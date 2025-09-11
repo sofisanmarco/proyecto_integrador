@@ -11,4 +11,4 @@ function Movie(props){
             </article>
 }
 
-export default Movie
+export default Movie;

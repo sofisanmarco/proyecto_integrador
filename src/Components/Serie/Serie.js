@@ -15,4 +15,4 @@ function Serie(props){
     )
 };
 
-export default Serie
+export default Serie;

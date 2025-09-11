@@ -16,5 +16,5 @@ function Series(){
         )
     };
 
-    export default Series
+    export default Series;
 
