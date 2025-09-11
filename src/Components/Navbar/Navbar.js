@@ -13,7 +13,7 @@ function Navbar(){
 
 
     return (
-
+        <React.Fragment>
         <nav>
             <ul class="nav nav-tabs my-4">
                 {itemsMenu.map((item) => (
@@ -23,6 +23,7 @@ function Navbar(){
                 ))}
             </ul>
         </nav>
+        </React.Fragment>
     );
 
 };

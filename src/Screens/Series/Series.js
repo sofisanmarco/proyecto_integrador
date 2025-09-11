@@ -13,3 +13,5 @@ function PaginaSeries(){
         </React.Fragment>
     )
 };
+
+export default PaginaSeries;

@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
-import logo from "../../../public/assets/img/logo.png"
+
 
 function Header() {
     return(
         <header>
             <div>
-                <img src={logo} alt="logo"/>
+                <img src="/assets/img/logo.png" alt="logo"/>
             </div>
 
             <Navbar/>

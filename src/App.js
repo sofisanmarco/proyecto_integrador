@@ -1,18 +1,17 @@
 import React from "react";
-import { Switch } from "react-router-dom/cjs/react-router-dom.min";
-import { Route } from "react-router-dom/cjs/react-router-dom";
+import { Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Screens/Home/Home.js"
 import Series from "./Screens/Series/Series.js"
 import Peliculas from "./Screens/Peliculas/Peliculas.js"
 
 function App() {
   return (
-    <Switch>
+    <Routes>
       <Route path="/" exact={true} component={Home}/>
       <Route path="/series" component={Series}/>
       <Route path="/peliculas" component={Peliculas}/>
-
-    </Switch>
+    </Routes>
   );
 }
 
