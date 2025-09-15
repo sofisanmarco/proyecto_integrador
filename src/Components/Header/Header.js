@@ -1,12 +1,15 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
+import Buscador from "../Buscador/Buscador";
 
 
 function Header() {
     return(
         <header>
+            <Buscador/>
+
             <div>
-                <img src="/assets/img/logo.png" alt="logo"/>
+                <img className="logo" src="/assets/img/logo.png" alt="logo"/>
             </div>
 
             <Navbar/>

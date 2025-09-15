@@ -5,6 +5,7 @@ import Home from "./Screens/Home/Home.js"
 import Series from "./Screens/Series/Series.js"
 import Peliculas from "./Screens/Peliculas/Peliculas.js"
 
+
 function App() {
   return (
     <Switch>

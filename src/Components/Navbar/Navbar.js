@@ -4,10 +4,10 @@ import {Link} from "react-router-dom"
 function Navbar(){
 
     const itemsMenu = [
-        { ruta:"/", name:"home"},
-        { ruta:"/peliculas", name:"peliculas"},
-        { ruta:"/series", name:"series"},
-        { ruta:"/favoritos", name:"favoritos"},
+        { ruta:"/", name:"Home", exact: true},
+        { ruta:"/peliculas", name:"Peliculas"},
+        { ruta:"/series", name:"Series"},
+        { ruta:"/favoritos", name:"Favoritos"},
     ]
 
 
@@ -15,10 +15,10 @@ function Navbar(){
     return (
         <React.Fragment>
         <nav>
-            <ul class="nav nav-tabs my-4">
+            <ul className="nav nav-tabs my-4">
                 {itemsMenu.map((item) => (
-                    <li key={item.ruta}>
-                        <Link to={item.ruta}>{item.name}</Link>
+                    <li className="nav-item" key={item.ruta}>
+                        <Link className="nav-link" to={item.ruta}>{item.name}</Link>
                     </li>
                 ))}
             </ul>
