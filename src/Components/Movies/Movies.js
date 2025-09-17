@@ -11,7 +11,7 @@ function Movies() {
         {img: "https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg", name: "I Know What You Did Last Summer", desc: "When five friends inadvertently cause a deadly car accident, they cover uptheir involvement and make a pact to keep it a secret rather than face the consequences. A yearlater, their past comes back to haunt them and they're forced to confront a horrifying truth:someone knows what they did last summer…and is hell-bent on revenge."}
     ] 
     return(
-        <section class="row cards all-movies" id="movies">
+        <section className="row cards all-movies" id="movies">
             {peliculas.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
         </section>
     )

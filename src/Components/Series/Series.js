@@ -10,7 +10,7 @@ function Series(){
 
 
         return(
-            <section class="row cards all-series" id="series">
+            <section className="row cards all-series" id="series">
             {series.map((item, idx) => <Serie key = {item + idx} info = {item}/>)}
             </section>
         )
