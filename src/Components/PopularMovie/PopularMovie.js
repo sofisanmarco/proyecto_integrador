@@ -1,4 +1,5 @@
 import React from "react";
+import "./PopularMovie.css"
 
 function PopularMovie(props){
     return(

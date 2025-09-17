@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Buscador from "../Buscador/Buscador";
+import "./Header.css"
 
 
 function Header() {
