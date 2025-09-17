@@ -4,6 +4,7 @@ import Footer from "../../Components/Footer/Footer";
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 import PlayingMovies from "../../Components/PlayingMovies/PlayingMovies";
 import SeriesPopulares from "../../Components/SeriesPopulares/SeriesPopulares";
+import SeriesSemana from "../../Components/SeriesSemana/SeriesSemana";
 
 function Home(){
 
@@ -19,6 +20,9 @@ function Home(){
                 
                 <h2 className="alert alert-warning">Popular TV shows this week</h2>
                 <SeriesPopulares/>
+
+                <h2 class="alert alert-warning">TV shows airing today</h2>
+                <SeriesSemana/>
             </main>
 
             <Footer/>
