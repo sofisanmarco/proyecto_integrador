@@ -1,12 +1,12 @@
 import React from "react";
 import Movies from "../../Components/Movies/Movies";
-import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 
 function Peliculas(){
     return(
         <React.Fragment>
              <h1>UdeSA Movies</h1>
-             <Navbar/>
+             <Header/>
             <h2 class="alert alert-primary">Todas las películas</h2>
             <Movies/>
         </React.Fragment>

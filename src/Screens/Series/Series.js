@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../Components/Navbar/Navbar";
+import Header from "../../Components/Header/Header";
 import Series from "../../Components/Series/Series";
 
 
@@ -7,7 +7,7 @@ function PaginaSeries(){
     return(
         <React.Fragment>
             <h1>UdeSA Movies</h1>
-            <Navbar/>
+            <Header/>
             <h2 class="alert alert-warning">Todas las series</h2>
             <Series/>
         </React.Fragment>
