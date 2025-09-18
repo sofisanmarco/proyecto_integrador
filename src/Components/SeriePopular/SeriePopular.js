@@ -4,7 +4,7 @@ function SeriePopular(props){
     return(
         <React.Fragment>
              <article class="single-card-tv">
-                <img src = {props.img} className="card-img-top"alt= {props.name} />
+                <img src = {`https://image.tmdb.org/t/p/w500 ${props.img}`} className="card-img-top"alt= {props.name} />
                 <div class="cardBody">
                     <h5 className="card-title">{props.name} </h5> 
                     <p className= "card-text"> {props.desc} </p>
