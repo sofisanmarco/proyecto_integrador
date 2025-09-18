@@ -1,18 +1,24 @@
-import React from "react";
+import React, {Component} from "react";
 
-function Serie(props){
-    return(
+class Serie extends Component{
+    constructor (props){
+    super(props);
+    this.state = {}}
+
+    render(){
+        return(
         <React.Fragment>
             <article className="single-card-tv">
-                    <img src={props.img} className="card-img-top" alt={props.nombre}/>
+                    <img src={this.props.info.img} className="card-img-top" alt={this.props.info.nombre}/>
                     <div class="cardBody">
-                        <h5 className="card-title">{props.nombre}</h5>
-                        <p className="card-text">{props.desc}</p>
+                        <h5 className="card-title">{this.props.info.nombre}</h5>
+                        <p className="card-text">{this.props.info.desc}</p>
                         <a href="serie.html" className="btn btn-primary">Ver más</a>
                     </div>
                 </article>
         </React.Fragment>
     )
+    }
 };
 
 export default Serie;

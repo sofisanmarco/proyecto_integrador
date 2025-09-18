@@ -10,6 +10,8 @@ function Home(){
 
     return(
         <React.Fragment>
+            <div class="container">
+            <h1>UdeSA Movies</h1>
             <Header/>
             <main>
                 <h2 className="alert alert-primary">Popular movies this week</h2>
@@ -24,6 +26,7 @@ function Home(){
                 <h2 class="alert alert-warning">TV shows airing today</h2>
                 <SeriesSemana/>
             </main>
+            </div>
 
             <Footer/>
         </React.Fragment>
