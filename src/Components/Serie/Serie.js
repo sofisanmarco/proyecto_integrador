@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class Serie extends Component{
     constructor (props){
@@ -13,7 +14,7 @@ class Serie extends Component{
                     <div class="cardBody">
                         <h5 className="card-title">{this.props.info.nombre}</h5>
                         <p className="card-text">{this.props.info.desc}</p>
-                        <a href="serie.html" className="btn btn-primary">Ver más</a>
+                        <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
                     </div>
                 </article>
         </React.Fragment>
