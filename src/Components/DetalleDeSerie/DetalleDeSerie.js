@@ -1,24 +1,24 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class DetalleDeSerie extends Component{
     constructor(props){
         super(props)
-        this.state ={}
     }
 
     render(){
         return(
             <React.Fragment>
-                <h2 className="alert alert-warning">{this.props.info.name}</h2>
+                <h2 className="alert alert-warning">{this.props.detalle.name}</h2>
                 <section className="row">
                     <section className="col-md-6 info">
                         <h3>Descripción</h3>
-                        <p className="description">{this.props.info.desc}</p>
-                        <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> 2025-08-27</p>
-                        <p class="mt-0 mb-0" id="episodes"><strong>Número de capítulos:</strong> 7</p>
-                        <p class="mt-0 seasons"><strong>Temporadas:</strong> 1</p>
+                        <p className="description">{this.props.detalle.overview}</p>
+                        <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong>{this.props.detalle.first_air_date}</p>
+                        <p class="mt-0 mb-0" id="episodes"><strong>Número de capítulos:</strong> {this.props.detalle.number_of_episodes}</p>
+                        <p class="mt-0 seasons"><strong>Temporadas:</strong> {this.props.detalle.number_of_seasons}</p>
                     </section>
-                    <img class="col-md-6" src={this.props.info.img} alt=""/>
+                    <img class="col-md-6" src={`https://image.tmdb.org/t/p/original${this.props.detalle.poster_path}`} alt=""/>
                 </section>
             </React.Fragment>
         )
