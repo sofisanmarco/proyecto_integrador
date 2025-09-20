@@ -10,10 +10,10 @@ class Serie extends Component{
         return(
         <React.Fragment>
             <article className="single-card-tv">
-                    <img src={this.props.info.img} className="card-img-top" alt={this.props.info.nombre}/>
+                    <img src={`https://image.tmdb.org/t/p/original${this.props.info.backdrop_path}`} className="card-img-top" alt={this.props.info.name}/>
                     <div class="cardBody">
-                        <h5 className="card-title">{this.props.info.nombre}</h5>
-                        <p className="card-text">{this.props.info.desc}</p>
+                        <h5 className="card-title">{this.props.info.name}</h5>
+                        <p className="card-text">{this.props.info.overview}</p>
                         <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
                     </div>
                 </article>
