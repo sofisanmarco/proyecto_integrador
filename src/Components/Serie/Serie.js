@@ -3,7 +3,7 @@ import React, {Component} from "react";
 class Serie extends Component{
     constructor (props){
     super(props);
-    this.state = {}}
+    this.state = {valor: props.value}}
 
     render(){
         return(

@@ -4,7 +4,22 @@ import Serie from "../Serie/Serie";
 class Series extends Component{
     constructor (props){
     super(props);
-    this.state = {}}
+    this.state = {valor: "", data: []}}
+
+    componentDidMount(){
+        fetch("https://api.themoviedb.org/3/tv/popular")
+        .then( response => response.json() )
+        .then( data => this.setState({data: data.results}))
+        .catch( error => console.log(error) );
+    }
+
+    evitarSubmit(event) {
+        event.preventDefault();
+    };
+
+    controlarCambios(event) {
+        this.setState({valor: event.target.value});
+    };
 
         render(){
 
@@ -15,10 +30,19 @@ class Series extends Component{
             {img: "https://image.tmdb.org/t/p/w500/3m1UaMLgmpj6krNaQwTpftYFsnz.jpg", nombre: "A Record of a Mortal's Journey to Immortality", desc: "A poor and ordinary boy from a village joins a minor sect in Jiang Hu and becomes an Unofficial Disciple by chance. How will Han Li, a commoner by birth, establish a foothold for himself in his sect? With his mediocre aptitude, he must successfully traverse the treacherous path of cultivation and avoid the notice of those who may do him harm. This is a story of an ordinary mortal who, against all odds, clashes with devilish demons and ancient celestials in order to find his own path towards immortality."}
             ];
 
+
             return(
-                <section className="row cards all-series" id="series">
-                {series.map((item, idx) => <Serie key = {item + idx} info = {item}/>)}
-                </section>
+                <div>
+                    <form onSubmit={(event) => this.evitarSubmit(event)}>
+                        <label>Nombre:</label>
+                        <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor} />
+                        <input type="submit" value="Submit" />
+                    </form>
+                          
+                    <section className="row cards all-series" id="series">
+                        {series.map((item, idx) => <Serie key = {item + idx} info = {item}/>)}
+                    </section> 
+                </div>
             )
         }
     };
