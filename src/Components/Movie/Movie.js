@@ -12,7 +12,7 @@ class Movie extends Component{
             <article className="single-card-movie">
                 <img src={`https://image.tmdb.org/t/p/original${this.props.info.poster_path}`} className="card-img-top"alt={this.props.info.name}/>
                 <div className="cardBody">
-                    <h5 className="card-title">{this.props.info.name}</h5>
+                    <h5 className="card-title">{this.props.info.title}</h5>
                     <p className="card-text">{this.props.info.overview}</p>
                     <Link to={`/peliculas/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
                 </div>

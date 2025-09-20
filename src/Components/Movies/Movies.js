@@ -31,7 +31,7 @@ class Movies extends Component {
     };
 
     filtrarPersonajes(valor){
-          return this.state.data.filter(personaje => personaje.name.toLowerCase().includes(valor.toLowerCase()) );
+          return this.state.data.filter(personaje => personaje.title.toLowerCase().includes(valor.toLowerCase()) );
         }
 
     render(){
@@ -56,6 +56,6 @@ class Movies extends Component {
     }
     
     
-}
+};
 
 export default Movies;
