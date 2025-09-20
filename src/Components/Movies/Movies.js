@@ -4,23 +4,54 @@ import Movie from "../Movie/Movie"
 class Movies extends Component {
     constructor (props){
     super(props);
-    this.state = {}}
+    this.state = {valor: "", data:[]}}
+
+     componentDidMount(){
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWQxNzUwYTU5YTMxZDFjZmY0MmI5NDZhYWE3MDQyZiIsIm5iZiI6MTc1ODM4MTcxMi43OTQsInN1YiI6IjY4Y2VjNjkwYzliZWIyZmZjYmQ0MTI3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0oHwn2HqoqSvfFiPbgi8EH9XlPxWosViWUbgLIVoRT0'
+            }
+        };
+
+        fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", options)
+        .then( response => response.json() )
+        .then( data => this.setState({data: data.results}))
+        .catch( error => console.log(error) );
+
+    }
+
+    evitarSubmit(event) {
+        event.preventDefault();
+    };
+
+    controlarCambios(event) {
+        this.setState({valor: event.target.value});
+    };
+
+    filtrarPersonajes(valor){
+          return this.state.data.filter(personaje => personaje.name.toLowerCase().includes(valor.toLowerCase()) );
+        }
 
     render(){
-        
-        let peliculas = [
-        {img: "https://image.tmdb.org/t/p/w500/tzrJulItjttxzoX0t3B2My46TS7.jpg", name: "The Thursday Murder Club", desc: "A group of senior sleuths passionate about solving cold cases get plunged intoa real-life murder mystery in this comic crime caper."},
-        {img:"https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg", name: "F1", desc: "Racing legend Sonny Hayes is coaxed out of retirement to lead a strugglingFormula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory."},
-        {img:"https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg", name: "I Know What You Did Last Summer", desc: "When five friends inadvertently cause a deadly car accident, they cover uptheir involvement and make a pact to keep it a secret rather than face the consequences. A yearlater, their past comes back to haunt them and they're forced to confront a horrifying truth:someone knows what they did last summer…and is hell-bent on revenge."},
-        {img: "https://image.tmdb.org/t/p/w500/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg", name: "Superman", desc: "Superman, a journalist in Metropolis, embarks on a journey to reconcile hisKryptonian heritage with his human upbringing as Clark Kent."},
-        {img:"https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg", name: "F1", desc: "Racing legend Sonny Hayes is coaxed out of retirement to lead a strugglingFormula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory."},
-        {img: "https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg", name: "I Know What You Did Last Summer", desc: "When five friends inadvertently cause a deadly car accident, they cover uptheir involvement and make a pact to keep it a secret rather than face the consequences. A yearlater, their past comes back to haunt them and they're forced to confront a horrifying truth:someone knows what they did last summer…and is hell-bent on revenge."}
-        ];
 
+        const personajesFiltrados = this.filtrarPersonajes(this.state.valor)
+        
         return(
+            <div>
+                <form onSubmit={(event)=>this.evitarSubmit(event)}>
+                        <label>Movie: </label>
+                        <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor} />
+                        <input type="submit" value="Submit" />
+                    </form>  
+
+                    {this.state.data === "" ?
+                    <h3> Cargando... </h3> :
             <section className="row cards all-movies" id="movies">
-                {peliculas.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
-            </section>
+                {personajesFiltrados.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
+            </section>}
+            </div>
         )
     }
     
