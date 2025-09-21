@@ -1,25 +1,140 @@
-import React, {Component} from "react";
-import PopularMovie from "../PopularMovie/PopularMovie";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-class PopularMovies extends Component {
-    constructor (props){
-    super(props);
-    this.state = {}}
-    
-    render(){
-        
-        let popular = [{img: "https://image.tmdb.org/t/p/w500/tzrJulItjttxzoX0t3B2My46TS7.jpg", nombre: "The Thursday Murder Club", desc: "A group of senior sleuths passionate about solving cold cases get plunged into a real-life murder mystery in this comic crime caper."}, 
-        {img: "https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg", nombre: "F1", desc: "Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory."},
-        {img: "https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg", nombre: "I Know What You Did Last Summer", desc: "When five friends inadvertently cause a deadly car accident, they cover up their involvement and make a pact to keep it a secret rather than face the consequences. A year later, their past comes back to haunt them and they're forced to confront a horrifying truth: someone knows what they did last summer…and is hell-bent on revenge."},
-        {img: "https://image.tmdb.org/t/p/w500/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg", nombre: "Superman", desc: "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent."}
-    ];
-        return(
-        <section className="row cards" id="movies">
-        {popular.map((item, idx) => <PopularMovie key = {item + idx} info = {item}/>)}
-        </section>
-    )
+const AUTH_HEADER = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmUxNDZjMWIwMmUxZmI5ODZmNzEyYWM1ZDQ5NzcyYSIsIm5iZiI6MTc1Nzk2MzgzOS43MzksInN1YiI6IjY4Yzg2NjNmYmMzYjEzYWZlZGEwZjdjNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GTkMeloFBEw22Du7AOtng1Dq8vMR7_XTB6txsWNiw9o";
+const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
+
+export default class PopularMovies extends Component {
+    constructor(props) {
+        super(props);
+
+        const raw = localStorage.getItem("favorites");
+        let favs = [];
+
+        if (raw !== null) {
+            const firstChar = raw.charAt(0);
+            if (firstChar === "[") {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) {
+                    favs = parsed;
+                }
+            } else if (firstChar === "{") {
+                const parsedObj = JSON.parse(raw);
+                if (Array.isArray(parsedObj)) {
+                    favs = parsedObj;
+                }
+            }
+        }
+
+        this.state = {
+            movies: [],
+            loading: true,
+            expandedIds: [],
+            favorites: favs
+        };
     }
 
-    };
+    componentDidMount() {
+        const options = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: AUTH_HEADER
+            }
+        };
 
-export default PopularMovies
+        fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", options)
+            .then((res) => res.json())
+            .then((json) => {
+                const results = (json && json.results) ? json.results : [];
+                this.setState({ movies: results, loading: false });
+            })
+            .catch((err) => {
+                console.error("Error fetching popular movies:", err);
+                this.setState({ movies: [], loading: false });
+            });
+    }
+
+    toggleExpanded = (id) => {
+        this.setState((prev) => {
+            const exists = prev.expandedIds.includes(id);
+            return exists
+                ? { expandedIds: prev.expandedIds.filter((x) => x !== id) }
+                : { expandedIds: [...prev.expandedIds, id] };
+        });
+    }
+
+    toggleFavorite = (id) => {
+        this.setState((prev) => {
+            const isFav = prev.favorites.includes(id);
+            const updated = isFav
+                ? prev.favorites.filter((x) => x !== id)
+                : [...prev.favorites, id];
+            return { favorites: updated };
+        }, () => {
+            localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
+        });
+    }
+
+    takeFirst(arr, n) {
+        return arr.slice(0, n);
+    }
+
+    renderCard(movie) {
+        // Usar imagen de la API si existe; si no, caer a la imagen default en public/
+        let imgUrl = "/assets/img/imagendefault.png";
+        if (movie && movie.poster_path) {
+            imgUrl = IMAGE_BASE + movie.poster_path;
+        } else if (movie && movie.backdrop_path) {
+            imgUrl = IMAGE_BASE + movie.backdrop_path;
+        }
+
+        const isExpanded = this.state.expandedIds.includes(movie.id);
+        const isFav = this.state.favorites.includes(movie.id);
+
+        return (
+            <article key={movie.id} className="single-card-movie">
+                <img
+                    src={imgUrl}
+                    className="card-img-top"
+                    alt={movie.title}
+                    onError={(e) => { e.target.src = "/assets/img/imagendefault.png"; }}
+                />
+                <div className="cardBody">
+                    <h5 className="card-title">{movie.title}</h5>
+
+                    { isExpanded ? <p className="card-text">{movie.overview ? movie.overview : "Sin descripción."}</p> : null }
+
+                    <Link to={"/peliculas/" + movie.id} className="btn btn-primary">Ver más</Link>
+
+                    <a
+                        href="#"
+                        className="btn alert-primary"
+                        aria-pressed={isFav}
+                        onClick={(e) => { e.preventDefault(); this.toggleFavorite(movie.id); }}
+                    >
+                        { isFav ? "💗" : "🩶" }
+                    </a>
+
+                    <button onClick={() => this.toggleExpanded(movie.id)} className="btn btn-link">
+                        { isExpanded ? "Ocultar descripción" : "Ver descripción" }
+                    </button>
+                </div>
+            </article>
+        );
+    }
+
+    render() {
+        const moviesToShow = this.takeFirst(this.state.movies, 4);
+
+        return (
+            <section className="row cards" id="movies">
+                { this.state.loading ? <p>Cargando...</p> :
+                    ( moviesToShow.length === 0 ? <p>No hay resultados.</p> :
+                        moviesToShow.map((m) => this.renderCard(m))
+                    )
+                }
+            </section>
+        );
+    }
+}

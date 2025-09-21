@@ -16,7 +16,7 @@ function Home(){
             <main>
                 <h2 className="alert alert-primary">Popular movies this week</h2>
                 <PopularMovies/>
-               
+                
                 <h2 className="alert alert-primary">Movies now playing</h2>
                 <PlayingMovies/>
                 

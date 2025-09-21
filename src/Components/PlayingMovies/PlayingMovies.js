@@ -1,27 +1,140 @@
-import React, {Component} from "react";
-import PlayingMovie from "../PlayingMovie/PlayingMovie";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-class PlayingMovies extends Component{
-    constructor (props){
-    super(props);
-    this.state = {}}
-    
-    render(){
+const AUTH_HEADER = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmUxNDZjMWIwMmUxZmI5ODZmNzEyYWM1ZDQ5NzcyYSIsIm5iZiI6MTc1Nzk2MzgzOS43MzksInN1YiI6IjY4Yzg2NjNmYmMzYjEzYWZlZGEwZjdjNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GTkMeloFBEw22Du7AOtng1Dq8vMR7_XTB6txsWNiw9o";
+const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
 
-        let playing = [{img: "https://image.tmdb.org/t/p/w500/yvirUYrva23IudARHn3mMGVxWqM.jpg", nombre: "War of the Worlds", desc: "Will Radford is a top analyst for Homeland Security who tracks potential threats through a mass surveillance program, until one day an attack by an unknown entity leads him to question whether the government is hiding something from him... and from the rest of the world."},
-        {img: "https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg", nombre: "F1", desc: "Racing legend Sonny Hayes is coaxed out of retirement to lead a strugglingFormula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory."}, 
-        {img: "https://image.tmdb.org/t/p/w500/12Va3oO3oYUdOd75zM57Nx1976a.jpg", nombre: "Eenie Meanie", desc: "A former teenage getaway driver gets dragged back into her unsavory past when a former employer offers her a chance to save the life of her chronically unreliable ex-boyfriend."}, 
-        {img: "https://image.tmdb.org/t/p/w500/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg", nombre: "Jurassic World Rebirth", desc: "Five years after the events of Jurassic World Dominion, covert operations expert Zora Bennett is contracted to lead a skilled team on a top-secret mission to secure genetic material from the world's three most massive dinosaurs. When Zora's operation intersects with a civilian family whose boating expedition was capsized, they all find themselves stranded on an island where they come face-to-face with a sinister, shocking discovery that's been hidden from the world for decades."},
-        {img: "https://image.tmdb.org/t/p/w500/m52XidzKx94bKlToZfEXUnL3pdy.jpg", nombre: "Together", desc: "With a move to the countryside already testing the limits of a couple's relationship, a supernatural encounter begins an extreme transformation of their love, their lives, and their flesh."},
-        {img: "https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg", nombre: "I Know What You Did Last Summer", desc: "When five friends inadvertently cause a deadly car accident, they cover up their involvement and make a pact to keep it a secret rather than face the consequences. A year later, their past comes back to haunt them and they're forced to confront a horrifying truth: someone knows what they did last summer…and is hell-bent on revenge."},
-    ];
+export default class PlayingMovies extends Component {
+    constructor(props) {
+        super(props);
 
-    return(
-        <section class="row cards" id="now-playing"> 
-        {playing.map((item, idx) => <PlayingMovie key = {item + idx} info = {item}/>)}
-        </section>
+        const raw = localStorage.getItem("favorites");
+        let favs = [];
+
+        if (raw !== null) {
+            const firstChar = raw.charAt(0);
+            if (firstChar === "[") {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) {
+                    favs = parsed;
+                }
+            } else if (firstChar === "{") {
+                const parsedObj = JSON.parse(raw);
+                if (Array.isArray(parsedObj)) {
+                    favs = parsedObj;
+                }
+            }
+        }
+
+        this.state = {
+            movies: [],
+            loading: true,
+            expandedIds: [],
+            favorites: favs
+        };
+    }
+
+    componentDidMount() {
+        const options = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                Authorization: AUTH_HEADER
+            }
+        };
+
+        fetch("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1", options)
+            .then((res) => res.json())
+            .then((json) => {
+                const results = (json && json.results) ? json.results : [];
+                this.setState({ movies: results, loading: false });
+            })
+            .catch((err) => {
+                console.error("Error fetching now playing movies:", err);
+                this.setState({ movies: [], loading: false });
+            });
+    }
+
+    toggleExpanded = (id) => {
+        this.setState((prev) => {
+            const exists = prev.expandedIds.includes(id);
+            return exists
+                ? { expandedIds: prev.expandedIds.filter((x) => x !== id) }
+                : { expandedIds: [...prev.expandedIds, id] };
+        });
+    }
+
+    toggleFavorite = (id) => {
+        this.setState((prev) => {
+            const isFav = prev.favorites.includes(id);
+            const updated = isFav
+                ? prev.favorites.filter((x) => x !== id)
+                : [...prev.favorites, id];
+            return { favorites: updated };
+        }, () => {
+            localStorage.setItem("favorites", JSON.stringify(this.state.favorites));
+        });
+    }
+
+    takeFirst(arr, n) {
+        return arr.slice(0, n);
+    }
+
+    renderCard(movie) {
+        // Usar imagen de la API si existe; si no, caer a la imagen default
+        let imgUrl = "/assets/img/imagendefault.png";
+        if (movie && movie.poster_path) {
+            imgUrl = IMAGE_BASE + movie.poster_path;
+        } else if (movie && movie.backdrop_path) {
+            imgUrl = IMAGE_BASE + movie.backdrop_path;
+        }
+
+        const isExpanded = this.state.expandedIds.includes(movie.id);
+        const isFav = this.state.favorites.includes(movie.id);
+
+        return (
+            <article key={movie.id} className="single-card-playing">
+                <img
+                    src={imgUrl}
+                    className="card-img-top"
+                    alt={movie.title}
+                    onError={(e) => { e.target.src = "/assets/img/imagendefault.png"; }}
+                />
+                <div className="cardBody">
+                    <h5 className="card-title">{movie.title}</h5>
+
+                    { isExpanded ? <p className="card-text">{movie.overview ? movie.overview : "Sin descripción."}</p> : null }
+
+                    <Link to={"/peliculas/" + movie.id} className="btn btn-primary">Ver más</Link>
+
+                    <a
+                        href="#"
+                        className="btn alert-primary"
+                        aria-pressed={isFav}
+                        onClick={(e) => { e.preventDefault(); this.toggleFavorite(movie.id); }}
+                    >
+                        { isFav ? "💗" : "🩶" }
+                    </a>
+
+                    <button onClick={() => this.toggleExpanded(movie.id)} className="btn btn-link">
+                        { isExpanded ? "Ocultar descripción" : "Ver descripción" }
+                    </button>
+                </div>
+            </article>
         );
     }
-};
 
-export default PlayingMovies
+    render() {
+        const moviesToShow = this.takeFirst(this.state.movies, 4);
+
+        return (
+            <section className="row cards" id="now-playing">
+                { this.state.loading ? <p>Cargando...</p> :
+                    ( moviesToShow.length === 0 ? <p>No hay resultados.</p> :
+                        moviesToShow.map((m) => this.renderCard(m))
+                    )
+                }
+            </section>
+        );
+    }
+}
