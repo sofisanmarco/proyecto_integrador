@@ -1,23 +1,22 @@
-import React from "react";
+import React, {Component} from "react";
 
 class DetalleDePelicula extends Component{
     constructor(props){
         super(props)
-        this.state = {}
     }
 
     render(){
         return(
             <React.Fragment>
-                <h2 className="alert alert-primary">Superman</h2>
+                <h2 className="alert alert-primary">{this.props.detalle.title}</h2>
             <section className="row">
-                    <img className="col-md-6" src={this.props.info.img} alt=""/>
+                    <img className="col-md-6" src={`https://image.tmdb.org/t/p/original${this.props.detalle.poster_path}`} alt=""/>
                 <section className="col-md-6 info">
                     <h3>Descripción</h3>
-                    <p className="description"> {this.props.info.desc}</p>
-                    <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> 2025-07-09</p>
-                    <p className="mt-0 mb-0 length"><strong>Duración:</strong> 130</p>
-                    <p classNamw="mt-0" id="votes"><strong>Puntuación:</strong> 7.534</p>
+                    <p className="description"> {this.props.detalle.overview}</p>
+                    <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> {this.props.detalle.release_date}</p>
+                    <p className="mt-0 mb-0 length"><strong>Duración:</strong> {this.props.detalle.runtime}</p>
+                    <p className="mt-0" id="votes"><strong>Puntuación:</strong> {this.props.detalle.imdb_id}</p>
                 </section>
             </section>
             </React.Fragment>
@@ -25,4 +24,4 @@ class DetalleDePelicula extends Component{
     }
 }
 
-export default DetalleDePelicula
+export default DetalleDePelicula;

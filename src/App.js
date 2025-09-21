@@ -5,6 +5,7 @@ import Home from "./Screens/Home/Home.js"
 import Series from "./Screens/Series/Series.js"
 import Peliculas from "./Screens/Peliculas/Peliculas.js"
 import SerieDetalle from "./Screens/SerieDetalle/SerieDetalle.js";
+import PeliculaDetalle from "./Screens/PeliculaDetalle/PeliculaDetalle.js";
 
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
     <Switch>
       <Route path="/" exact={true} component={Home}/>
       <Route path="/series" exact={true} component={Series}/>
-      <Route path="/peliculas" component={Peliculas}/>
+      <Route path="/peliculas" exact = {true} component={Peliculas}/>
       <Route path="/series/:id" component={SerieDetalle}/>
+      <Route path="/peliculas/:id" component={PeliculaDetalle}/>
     </Switch>
   );
 }
