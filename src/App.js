@@ -16,6 +16,7 @@ function App() {
       <Route path="/peliculas" exact = {true} component={Peliculas}/>
       <Route path="/series/:id" component={SerieDetalle}/>
       <Route path="/peliculas/:id" component={PeliculaDetalle}/>
+      <Route component={Error404}/>
     </Switch>
   );
 }
