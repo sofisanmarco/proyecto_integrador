@@ -4,7 +4,7 @@ import Movie from "../Movie/Movie"
 class Movies extends Component {
     constructor (props){
     super(props);
-    this.state = {valor: "", data:[]}}
+    this.state = {valor: "", data:[], boton: "Cargar más",}}
 
      componentDidMount(){
         const options = {
@@ -34,6 +34,16 @@ class Movies extends Component {
           return this.state.data.filter(personaje => personaje.title.toLowerCase().includes(valor.toLowerCase()) );
         }
 
+    masPeliculas(){
+        fetch(this.state.nextPage)
+        .then((response) => response.json())
+        .then(data => this.setState({
+            data: this.state.data.concat(data.results),
+            nextPage: data.info.next
+    }))
+        .catch((error) => console.log('El error fue: ' + error));
+}
+
     render(){
 
         const personajesFiltrados = this.filtrarPersonajes(this.state.valor)
@@ -50,6 +60,7 @@ class Movies extends Component {
                     <h3> Cargando... </h3> :
             <section className="row cards all-movies" id="movies">
                 {personajesFiltrados.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
+                <div> <button onClick={() => this.masPeliculas()}> Cargar mas </button> </div>
             </section>}
             </div>
         )

@@ -12,11 +12,12 @@ class DetalleDePelicula extends Component{
             <section className="row">
                     <img className="col-md-6" src={`https://image.tmdb.org/t/p/original${this.props.detalle.poster_path}`} alt=""/>
                 <section className="col-md-6 info">
-                    <h3>Descripción</h3>
-                    <p className="description"> {this.props.detalle.overview}</p>
+                    <p className="mt-0" id="votes"><strong>Rating:</strong> {this.props.detalle.vote_average}</p>
                     <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> {this.props.detalle.release_date}</p>
                     <p className="mt-0 mb-0 length"><strong>Duración:</strong> {this.props.detalle.runtime}</p>
-                    <p className="mt-0" id="votes"><strong>Puntuación:</strong> {this.props.detalle.imdb_id}</p>
+                    <h3>Descripción</h3>
+                    <p className="description"> Sinopsis: {this.props.detalle.overview}</p>
+                    <p className="mt-0 mb-0" id="votes"><strong>Genero:</strong> {this.props.detalle.genre}</p>
                 </section>
             </section>
             </React.Fragment>
