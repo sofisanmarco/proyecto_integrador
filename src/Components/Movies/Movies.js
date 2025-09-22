@@ -4,7 +4,7 @@ import Movie from "../Movie/Movie"
 class Movies extends Component {
     constructor (props){
     super(props);
-    this.state = {valor: "", data:[], boton: "Cargar más",loading:true}}
+    this.state = {valor: "", data:[], boton: "Cargar más",page:1,loading:true}}
 
     componentDidMount(){
         const options = {
@@ -17,7 +17,7 @@ class Movies extends Component {
 
         fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results.filter((pelicula, idx) => idx < 4), loading:false}))
+        .then( data => this.setState({data: data.results.filter((pelicula, idx) => idx < 4), page:1, loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });
 
     }
@@ -35,11 +35,20 @@ class Movies extends Component {
         }
 
     masPeliculas(){
-        fetch(this.state.nextPage)
+        const nextPage = this.state.page + 1;
+        const options ={
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYWQxNzUwYTU5YTMxZDFjZmY0MmI5NDZhYWE3MDQyZiIsIm5iZiI6MTc1ODM4MTcxMi43OTQsInN1YiI6IjY4Y2VjNjkwYzliZWIyZmZjYmQ0MTI3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0oHwn2HqoqSvfFiPbgi8EH9XlPxWosViWUbgLIVoRT0'
+            }
+        };
+
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&${nextPage}`, options)
         .then((response) => response.json())
         .then(data => this.setState({
             data: this.state.data.concat(data.results),
-            nextPage: data.info.next
+            nextPage: nextPage
     }))
         .catch((error) => console.log('El error fue: ' + error));
 }
