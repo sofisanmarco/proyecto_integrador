@@ -26,7 +26,6 @@ class PeliculaDetalle extends Component{
     render(){
     return(
         <div className="container">
-                <h1>UdeSA Movies</h1>
                 <Header/>
                 <DetalleDePelicula detalle = {this.state.detalle}/>
             </div>

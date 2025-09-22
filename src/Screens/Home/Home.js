@@ -5,14 +5,15 @@ import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 import PlayingMovies from "../../Components/PlayingMovies/PlayingMovies";
 import SeriesPopulares from "../../Components/SeriesPopulares/SeriesPopulares";
 import SeriesSemana from "../../Components/SeriesSemana/SeriesSemana";
+import Buscador from "../../Components/Buscador/Buscador";
 
 function Home(){
 
     return(
         <React.Fragment>
             <div class="container">
-            <h1>UdeSA Movies</h1>
             <Header/>
+            <Buscador/>
             <br/>
             <main>
                

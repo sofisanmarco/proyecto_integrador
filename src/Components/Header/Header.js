@@ -6,10 +6,8 @@ import Buscador from "../Buscador/Buscador";
 function Header() {
     return(
         <header>
+            <h1>UdeSA Movies</h1>
             <Navbar/>
-            
-            <Buscador/>
-            
         </header>
 
     )
