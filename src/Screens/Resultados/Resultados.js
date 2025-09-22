@@ -56,7 +56,7 @@ render(){
     }
 
     return(
-        <div>
+        <div className="container">
             <Header/>
             <h2 className="error404" >Resultados de busqueda</h2>
             <section className="row cards">
