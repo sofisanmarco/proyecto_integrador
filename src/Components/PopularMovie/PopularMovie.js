@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import "./PopularMovie.css"
 
 class PopularMovie extends Component{
     constructor (props){
@@ -81,4 +80,4 @@ class PopularMovie extends Component{
     };
 };
 
-export default PopularMovie
+export default PopularMovie;

@@ -39,4 +39,4 @@ class PlayingMovie extends Component{
 
 };
 
-export default PlayingMovie
+export default PlayingMovie;
