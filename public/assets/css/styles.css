@@ -102,10 +102,11 @@ nav, footer {
     border-radius: 35%;
 }
 
-.footerNames{
+.footerNames, .noFav{
     text-align: center;
     color: rgb(255, 255, 255);
 }
+
 
 @media(min-width: 765px){
     nav {
