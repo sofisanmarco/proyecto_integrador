@@ -10,10 +10,16 @@ class Buscador extends Component{
         };
     }
 
-    evitarSubmit = (evento => {
-        evento.preventDefault();
-        this.props.history.push(`/resultados?query=${this.state.valor}&type=${this.state.tipo}`)
+    evitarSubmit = (evento) => {
+    evento.preventDefault();
+    this.props.history.push({
+        pathname: "/resultados",
+        state: { 
+            query: this.state.valor, 
+            tipo: this.state.tipo 
+        }
     });
+};
 
     controlarCambios = (event=> {
     this.setState({valor: event.target.value});
