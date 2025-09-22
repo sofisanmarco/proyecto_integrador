@@ -69,7 +69,7 @@ class Serie extends Component{
                         {this.state.descripcion ? (<p className="card-text">{this.props.info.overview}</p>) : ""}
                         <div><button className="btn alert-primary" onClick={() => this.switch() }>{this.state.boton}</button></div>
 
-                        <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
+                        <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">More</Link>
 
                         {this.state.favoritos ? <div ><button className="btn alert-primary" onClick={() => this.quitarDeFavoritos()} >♥️</button></div>
                           : <div><button className="btn alert-primary" onClick={() => this.agregarFavoritos()} >🩶</button></div>} 

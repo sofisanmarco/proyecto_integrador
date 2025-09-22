@@ -64,7 +64,7 @@ class Movies extends Component {
                     <h3> Cargando... </h3> :
             <section className="row cards all-movies" id="movies">
                 {personajesFiltrados.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
-                <div> <button onClick={() => this.masPeliculas()}> Cargar mas </button> </div>
+                <div> <button onClick={() => this.masPeliculas()}> Load more </button> </div>
             </section>}
             </div>
         )
