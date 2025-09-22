@@ -29,13 +29,13 @@ class PopularMovie extends Component{
 
         if(recuperarFavoritos == null){
             let arrayFavs = []
-            arrayFavs.push(this.props.info.id)
+            arrayFavs.push(this.props.info)
             let arrayToString = JSON.stringify(arrayFavs)
             localStorage.setItem('favoritos', arrayToString)
         } 
         else {
             let parseoFavs = JSON.parse(recuperarFavoritos)
-            parseoFavs.push(this.props.info.id)
+            parseoFavs.push(this.props.info)
             let arrayToString = JSON.stringify(parseoFavs) 
             localStorage.setItem('favoritos', arrayToString)
         }
@@ -44,7 +44,7 @@ class PopularMovie extends Component{
     quitarDeFavoritos(){
         let recuperarfavs = localStorage.getItem('favoritos');
         let parseoFavs = JSON.parse(recuperarfavs)
-        let filtrados = parseoFavs.filter(id => id != this.props.info.id)
+        let filtrados = parseoFavs.filter(item => item.id != this.props.info.id)
         let arrayToString = JSON.stringify(filtrados)
         localStorage.setItem('favoritos', arrayToString)
 

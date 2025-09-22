@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 class SeriePopular extends Component{
     constructor (props){
     super(props);
-    this.state = {descripcion: false, boton: "Ver descripcion", favs: false}}
+    this.state = {descripcion: false, boton: "Ver descripcion", favoritos: false}}
 
     switch(){
         if (this.state.descripcion == false){
@@ -22,20 +22,20 @@ class SeriePopular extends Component{
 
     agregarFavoritos(){
         this.setState({
-            favs: true
+            favoritos: true
         })
 
         let recuperarFavoritos = localStorage.getItem('favoritos')
 
         if(recuperarFavoritos == null){
             let arrayFavs = []
-            arrayFavs.push(this.props.info.id)
+            arrayFavs.push(this.props.info)
             let arrayToString = JSON.stringify(arrayFavs)
             localStorage.setItem('favoritos', arrayToString)
         } 
         else {
             let parseoFavs = JSON.parse(recuperarFavoritos)
-            parseoFavs.push(this.props.info.id)
+            parseoFavs.push(this.props.info)
             let arrayToString = JSON.stringify(parseoFavs) 
             localStorage.setItem('favoritos', arrayToString)
         }
@@ -44,7 +44,7 @@ class SeriePopular extends Component{
     quitarDeFavoritos(){
         let recuperarfavs = localStorage.getItem('favoritos');
         let parseoFavs = JSON.parse(recuperarfavs)
-        let filtrados = parseoFavs.filter(id => id != this.props.info.id)
+        let filtrados = parseoFavs.filter(item => item.id != this.props.info.id)
         let arrayToString = JSON.stringify(filtrados)
         localStorage.setItem('favoritos', arrayToString)
 
@@ -59,11 +59,11 @@ class SeriePopular extends Component{
     render(){
         return(
         <React.Fragment>
-             <article class="single-card-tv">
+            <article class="single-card-tv">
                 <img src={`https://image.tmdb.org/t/p/original${this.props.info.poster_path}`} className="card-img-top"alt= "..." />
                 <div class="cardBody">
                     <h5 className="card-title">{this.props.info.name} </h5> 
-                      {this.state.descripcion ? (<p className="card-text">{this.props.info.overview}</p>) : ""}
+                    {this.state.descripcion ? (<p className="card-text">{this.props.info.overview}</p>) : ""}
                     <div><button className="btn alert-primary" onClick={() => this.switch() }>{this.state.boton}</button></div>
 
                     <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
@@ -72,7 +72,7 @@ class SeriePopular extends Component{
                     : <div><button className="btn alert-primary" onClick={() => this.agregarFavoritos()} >🩶</button></div>} 
 
                 </div>
-             </article>
+            </article>
         </React.Fragment>
     )
     }
