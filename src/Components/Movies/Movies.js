@@ -17,7 +17,7 @@ class Movies extends Component {
 
         fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results, loading:false}))
+        .then( data => this.setState({data: data.results.filter((pelicula, idx) => idx < 4), loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });
 
     }
@@ -64,8 +64,10 @@ class Movies extends Component {
                     <h3> Cargando... </h3> :
             <section className="row cards all-movies" id="movies">
                 {personajesFiltrados.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
-                <div> <button onClick={() => this.masPeliculas()}> Cargar mas </button> </div>
             </section>}
+
+                <div className="cargarMasContainer"> <button className="cargarMas" onClick={() => this.masPeliculas()}> Cargar mas </button> </div>
+
             </div>
         )
     }
