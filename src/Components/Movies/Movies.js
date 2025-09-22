@@ -4,9 +4,9 @@ import Movie from "../Movie/Movie"
 class Movies extends Component {
     constructor (props){
     super(props);
-    this.state = {valor: "", boton: "Cargar más",page:1,loading:true}}
+    this.state = {valor: "", boton: "Cargar más", page: 1, loading: true}}
 
-    componentDidMount(){
+    /*componentDidMount(){
         const options = {
             method: 'GET',
             headers: {
@@ -20,7 +20,7 @@ class Movies extends Component {
         .then( data => this.setState({data: data.results, page:1, loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });
 
-    }
+    }*/
 
     evitarSubmit(event) {
         event.preventDefault();
@@ -31,7 +31,7 @@ class Movies extends Component {
     };
 
     filtrarPersonajes(valor){
-        return this.state.data.filter(personaje => personaje.title.toLowerCase().includes(valor.toLowerCase()) );
+        return this.props.data.filter(personaje => personaje.title.toLowerCase().includes(valor.toLowerCase()) );
         }
 
     masPeliculas(){
@@ -55,6 +55,8 @@ class Movies extends Component {
 
     render(){
 
+        console.log(this.props.data);
+        
         if (this.state.loading){
             return <h3 className="Cargando">Cargando...</h3>
         }

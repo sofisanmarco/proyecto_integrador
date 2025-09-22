@@ -6,7 +6,7 @@ class Series extends Component{
     super(props);
     this.state = {valor: "", data: [], boton:"Cargar mas" ,page:1, loading:true}}
 
-    componentDidMount(){
+    /*componentDidMount(){
         const options = {
             method: 'GET',
             headers: {
@@ -19,7 +19,7 @@ class Series extends Component{
         .then( response => response.json() )
         .then( data => this.setState({data: data.results, loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
-    }
+    }*/
 
     evitarSubmit(event) {
         event.preventDefault();

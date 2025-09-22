@@ -12,7 +12,7 @@ import SeriesPopulares from "../../Components/SeriesPopulares/SeriesPopulares";
 class Home extends Component{
     constructor(props){
         super(props)
-        this.state = {topMovies: [], popularSeries: [], popularMovies: [], topSeries: [], loading: []}
+        this.state = {topMovies: [], popularSeries: [], popularMovies: [], topSeries: []}
     }
 
     componentDidMount(){
@@ -29,12 +29,12 @@ class Home extends Component{
         .then( topMovies => this.setState({topMovies: topMovies.results.filter((pelicula, idx) => idx < 4), loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
 
-        fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options)
+        fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", options)
         .then( response => response.json() )
         .then( popularMovies => this.setState({popularMovies: popularMovies.results.filter((pelicula, idx) => idx < 4), loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
 
-        fetch("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1", options)
+        fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1", options)
         .then( response => response.json() )
         .then( popularSeries => this.setState({popularSeries: popularSeries.results.filter((serie, idx) => idx < 4), loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });
@@ -49,18 +49,40 @@ class Home extends Component{
 
 
 render(){
+    console.log(this.state.topMovies);
+    
     return(
             <div class="container">
                 <Header/>
                 <Buscador/>
                     <main>
-                        <h2 class="alert alert-primary">Top rated movies</h2>
-                        <TopMovies />
+                        <h2 class="alert alert-primary">Top rated Movies</h2>
+                        <section class="row cards" id="movies">
+                            {this.state.topMovies.map(peli => {
+                                return <Movie info={peli} />
+                            })}
+                        </section>
 
-                        
+                        <h2 class="alert alert-primary">Popular Movies this week</h2>
+                        <section class="row cards" id="movies">
+                        {this.state.popularMovies.map(peli => {
+                            return <Movie info={peli} />
+                        })}
+                        </section>
+
+                        <h2 className="alert alert-warning">Top rated TV shows</h2>
+                        <section class="row cards" id="movies">
+                        {this.state.topSeries.map(peli => {
+                            return <Serie info={peli} />
+                        })}
+                        </section>
 
                         <h2 className="alert alert-warning">Popular TV shows this week</h2>
-                        <SeriesPopulares/>
+                        <section class="row cards" id="movies">
+                        {this.state.popularSeries.map(peli => {
+                            return <Serie info={peli} />
+                        })}
+                        </section>
                     
                     </main>
                 <Footer/>

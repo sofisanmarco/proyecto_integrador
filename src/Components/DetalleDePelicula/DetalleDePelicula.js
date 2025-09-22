@@ -46,6 +46,8 @@ class DetalleDePelicula extends Component{
 
 
     render(){
+        console.log(this.props.detalle);
+        
         return(
             <React.Fragment>
                 <h2 className="alert alert-primary">{this.props.detalle.title}</h2>
