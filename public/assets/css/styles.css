@@ -107,6 +107,19 @@ nav, footer {
     color: rgb(255, 255, 255);
 }
 
+.cargarMas{
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+
+.cargarMasContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
 
 @media(min-width: 765px){
     nav {
