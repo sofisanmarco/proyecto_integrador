@@ -14,12 +14,19 @@ constructor(props) {
 }
 
 
-switch = () => {
-    this.setState((prev) => ({
-    descripcion: !prev.descripcion,
-    boton: prev.descripcion ? "See Overview" : "Close Overview",
-    }));
-};
+    switch = () => {
+        if (this.state.descripcion == false){
+            this.setState({
+                descripcion: true,
+                boton: "Close overview"
+            }); 
+            } else {
+            this.setState({
+                descripcion: false,
+                boton: "See Overview"    
+            }); 
+        }
+    };
 
 componentDidMount() {
     this.cargarFavoritos();
@@ -41,8 +48,9 @@ cargarFavoritos = () => {
 
     const parseoFavs = JSON.parse(recuperarfavs);
 
-    const peliculas = parseoFavs.filter((it) => it && it.title);
-    const series = parseoFavs.filter((it) => it && it.name);
+    const peliculas = parseoFavs.filter((it) => it && it.title); //objetos tienen propiedad title
+    const series = parseoFavs.filter((it) => it && it.name); //objetos tienen propiedad name
+    //parseoFavs es el array que conseguimos de localStorage. Usamos filter para separar ese array en peliculas y series
 
     this.setState({ peliculas: peliculas, series: series });
 };
@@ -57,9 +65,10 @@ quitarDeFavoritos = (id) => {
     localStorage.setItem('favoritos', JSON.stringify(filtrados));
 
     this.setState({
-    peliculas: filtrados.filter((it) => it && it.title),
-    series: filtrados.filter((it) => it && it.name),
+    peliculas: filtrados.filter((it) => it && it.title),  //objetos tienen propiedad title
+    series: filtrados.filter((it) => it && it.name), //objetos tienen propiedad name
     });
+    //filtrados es el nuevo array sin el item eliminado y denuevo se hace la separacion entre peliculas y series
 };
 
 render() {
