@@ -102,7 +102,7 @@ nav, footer {
     border-radius: 35%;
 }
 
-.footerNames, .noFav{
+.footerNames, .noFav, .error404{
     text-align: center;
     color: rgb(255, 255, 255);
 }
