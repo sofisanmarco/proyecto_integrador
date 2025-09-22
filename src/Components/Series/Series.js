@@ -61,7 +61,7 @@ class Series extends Component{
 
             return(
                 <div>
-                    <form onSubmit={(event)=>this.evitarSubmit(event)}>
+                    <form className="search-form" onSubmit={(event)=>this.evitarSubmit(event)}>
                         <label>Serie: </label>
                         <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor} />
                         <input type="submit" value="Submit" />
