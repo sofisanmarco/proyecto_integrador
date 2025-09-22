@@ -4,10 +4,6 @@ import Footer from "../../Components/Footer/Footer";
 import Buscador from "../../Components/Buscador/Buscador";
 import Serie from "../../Components/Serie/Serie";
 import Movie from "../../Components/Movie/Movie"
-import Movies from "../../Components/Movies/Movies";
-import Series from "../../Components/Series/Series";
-import TopMovies from "../../Components/TopMovies/TopMovies"
-import SeriesPopulares from "../../Components/SeriesPopulares/SeriesPopulares";
 
 class Home extends Component{
     constructor(props){
