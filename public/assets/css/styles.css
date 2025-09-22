@@ -79,7 +79,8 @@ nav, footer {
     overflow: hidden;
 }
 .single-card-tv {
-    width: 19%;
+    width: 24%;
+    margin-bottom: 20px;
 }
 .tv-show .card-text{
     height: 100px;
