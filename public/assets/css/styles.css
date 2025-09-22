@@ -1,34 +1,41 @@
 body {
-    background-color: rgb(10, 10, 10);
+    background-color: #1E1B1B;
+    color: #DCE8DC;
 }
 
 h1 {
-    color: white;
+    color: #9DE0AD;
 }
 
 nav, footer {
     display: grid;
     grid-template-columns: 1fr;
-    background-color: rgb(30, 30, 30);
+    background-color: #2C2A2A;
     border-radius: 4px;
     margin-bottom: 20px;
+    border: 1px solid #3C5A5A;
 }
 
 .nav {
     margin: 0 !important;
 }
 .nav a{
-    color: rgb(255, 255, 255);
+    color: #DCE8DC;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 .nav a:hover{
     font-weight: bold;
+    color: #9DE0AD;
 }
+
 .search-form, .filter-form {
     padding: .5rem 1rem;
     display: grid;
     grid-template-columns: 4fr 1fr;
     column-gap: 5px;
+    background-color: #333333;
+    border-radius: 6px;
 }
 .filter-form {
     grid-template-columns: 1fr;
@@ -36,20 +43,34 @@ nav, footer {
 .search-form .btn-sm{
     line-height: 1;
     font-size: 0.9rem;
+    background-color: #2C2A2A;
+    border: 1px solid #45ADA8;
+    color: #E5FCC2;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
 }
+.search-form .btn-sm:hover {
+    background-color: #45ADA8;
+    color: #1E1B1B;
+}
+
 .search-form input,
 .filter-form input {
-    border: 1px solid #ccc;
+    border: 1px solid #3C5A5A;
     border-radius: 4px;
     padding-top: 3px;
     vertical-align: middle;
     line-height: 1;
     font-size: 1rem;
     padding-bottom: 4px;
+    background-color: #1E1B1B;
+    color: #E5FCC2;
 }
 .filter-form input {
     line-height: 1.5;
 }
+
 .cards {
     padding: 0.75rem 1.25rem;
     display: flex;
@@ -57,11 +78,15 @@ nav, footer {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 2%;
-    background-color: rgb(30, 30, 30);
+    background-color: #2C2A2A;
 }
+
 .cardBody {
     margin-top: 20px;
-    color: rgb(179, 179, 179);
+    color: #DCE8DC;
+    background-color: #333333;
+    border-radius: 8px;
+    padding: 0.5rem;
 }
 
 .single-card-people {
@@ -69,7 +94,6 @@ nav, footer {
 }
 .single-card-movie {
     width: 24%;
-
 }
 .single-card-playing {
     width: 15%;
@@ -102,17 +126,22 @@ nav, footer {
 .logo{
     height: 100px;
     border-radius: 35%;
+    border: 2px solid #9DE0AD;
 }
 
 .footerNames, .noFav, .error404, .Cargando{
     text-align: center;
-    color: rgb(255, 255, 255);
+    color: #E5FCC2;
 }
 
 .cargarMas{
+    color: #1E1B1B;
+    background-color: #9DE0AD;
+    border: none;
+}
+.cargarMas:hover{
+    background-color: #45ADA8;
     color: #fff;
-    background-color: #0062cc;
-    border-color: #005cbf;
 }
 
 .cargarMasContainer{
@@ -122,28 +151,59 @@ nav, footer {
     margin-top: 20px;
 }
 
-.description {
-    color: rgb(179, 179, 179);
+.alert-primary,
+.alert-warning {
+    background-color: #2C2A2A;
+    border: 1px solid #45ADA8;
+    color: #E5FCC2;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
 }
 
-.col-md-6  {
-    color: rgb(179, 179, 179);
+.alert-primary:hover,
+.alert-warning:hover {
+    background-color: #45ADA8;
+    color: #1E1B1B;
 }
 
-.alert {
-    background-color: rgb(190, 190, 255);
-    color: rgb(63, 63, 105);
-    border-color: #005cbf;
+.btn-primary {
+    background-color: #2C2A2A;
+    border: 1px solid #45ADA8;
+    color: #E5FCC2;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
 }
 
-.btn{
-    background-color: rgb(179, 179, 179);
-    color: black;
-    border-color: rgb(145, 145, 145);;
+.btn-primary:hover {
+    background-color: #45ADA8;
+    color: #1E1B1B;
 }
+
+.search-form select {
+    background-color: #2C2A2A;
+    border: 1px solid #45ADA8;
+    color: #E5FCC2;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.search-form select:focus,
+.search-form select:hover {
+    background-color: #45ADA8;
+    color: #1E1B1B;
+    border-color: #9DE0AD;
+    outline: none;
+}
+
+
 
 @media(min-width: 765px){
     nav {
         grid-template-columns: 4fr 3fr;
     }
 }
+
