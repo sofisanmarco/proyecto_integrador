@@ -11,7 +11,7 @@ function PaginaSeries(){
 
                 
 
-                <h2 class="alert alert-warning">Todas las series</h2>
+                <h2 class="alert alert-warning">Series Populares</h2>
                 <Series/>
             </div>
         </React.Fragment>
