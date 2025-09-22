@@ -22,6 +22,9 @@ render(){
         return <h3 className="Cargando">Cargando...</h3>
     }
 
+    if (this.state.resultados.length === 0){
+        return <p className="Cargando">No se encontraron resultados</p>
+    }
 
     return(
         <div>
