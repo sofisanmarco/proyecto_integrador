@@ -53,7 +53,7 @@ render(){
                 <Header/>
                 <Buscador/>
                     <main>
-                        <Link to={"/peliculas"}><h2 class="alert alert-primary">Top rated Movies</h2></Link>
+                        <Link to={"/topMovies"}><h2 class="alert alert-primary">Top rated Movies</h2></Link>
                         <section class="row cards" id="movies">
                             {this.state.topMovies.map(peli => {
                                 return <Movie info={peli} />
@@ -74,7 +74,7 @@ render(){
                         })}
                         </section>
 
-                        <Link to={"/series"}> <h2 className="alert alert-warning">Popular TV shows this week</h2></Link> 
+                        <Link to={"/seriesPopulares"}> <h2 className="alert alert-warning">Popular TV shows this week</h2></Link> 
                         <section class="row cards" id="movies">
                         {this.state.popularSeries.map(peli => {
                             return <Serie info={peli} />
