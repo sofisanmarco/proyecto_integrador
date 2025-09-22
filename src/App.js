@@ -9,7 +9,7 @@ import PeliculaDetalle from "./Screens/PeliculaDetalle/PeliculaDetalle.js";
 import Favoritos from "./Screens/Favoritos/Favoritos.js"
 import Resultados from "./Screens/Resultados/Resultados.js"
 import NotFound from "./Screens/NotFound/NotFound.js";
-
+import PopularMovies from "./Screens/PopularMovies/PopularMovies.js";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <Route path="/" exact={true} component={Home}/>
       <Route path="/series" exact={true} component={Series}/>
       <Route path="/peliculas" exact = {true} component={TopMovies}/>
+      <Route path="/popularMovies" component={PopularMovies}/>
       <Route path="/series/:id" component={SerieDetalle}/>
       <Route path="/peliculas/:id" component={PeliculaDetalle}/>
       <Route path="/Favoritos" component={Favoritos}/>
