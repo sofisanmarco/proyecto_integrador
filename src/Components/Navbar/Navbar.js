@@ -8,6 +8,7 @@ function Navbar(){
         { ruta:"/peliculas", name:"Top rated Movies"},
         { ruta: "/popularMovies", name: "Popular Movies"},
         { ruta:"/series", name:"Popular TV shows"},
+        {ruta: "/topSeries", name: "Top rated TV shows"},
         { ruta:"/favoritos", name:"Favorites"}
     ]
 

@@ -2,7 +2,6 @@ import React from "react";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router-dom";
 import Home from "./Screens/Home/Home.js"
-import Series from "./Screens/Series/Series.js"
 import TopMovies from "./Screens/TopMovies/TopMovies.js";
 import SerieDetalle from "./Screens/SerieDetalle/SerieDetalle.js";
 import PeliculaDetalle from "./Screens/PeliculaDetalle/PeliculaDetalle.js";
@@ -10,12 +9,15 @@ import Favoritos from "./Screens/Favoritos/Favoritos.js"
 import Resultados from "./Screens/Resultados/Resultados.js"
 import NotFound from "./Screens/NotFound/NotFound.js";
 import PopularMovies from "./Screens/PopularMovies/PopularMovies.js";
+import SeriesPopulares from "./Screens/SeriesPopulares/SeriesPopulares.js";
+import TopSeries from "./Screens/TopSeries/TopSeries.js";
 
 function App() {
   return (
     <Switch>
       <Route path="/" exact={true} component={Home}/>
-      <Route path="/series" exact={true} component={Series}/>
+      <Route path="/series" exact={true} component={SeriesPopulares}/>
+      <Route path="/topSeries" component={TopSeries}/>
       <Route path="/peliculas" exact = {true} component={TopMovies}/>
       <Route path="/popularMovies" component={PopularMovies}/>
       <Route path="/series/:id" component={SerieDetalle}/>
