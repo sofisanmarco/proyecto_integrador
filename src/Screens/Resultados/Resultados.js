@@ -3,7 +3,6 @@ import SeriePopular from "../../Components/SeriePopular/SeriePopular";
 import PopularMovie from "../../Components/PopularMovie/PopularMovie";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import Buscador from "../../Components/Buscador/Buscador";
 
 class Resultados extends Component{
     constructor(props){
@@ -59,7 +58,6 @@ render(){
     return(
         <div>
             <Header/>
-            <Buscador/>
             <h2 className="error404" >Resultados de busqueda</h2>
             <section className="row cards">
 

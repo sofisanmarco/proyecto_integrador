@@ -7,7 +7,6 @@ function PaginaSeries(){
     return(
         <React.Fragment>
             <div class="container">
-                <h1>UdeSA Movies</h1>
                 <Header/>
 
                 

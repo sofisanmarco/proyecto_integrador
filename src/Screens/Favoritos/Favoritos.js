@@ -67,6 +67,7 @@ render() {
     const series = this.state.series;
 
     return (
+        <div class="container">
     <>
         <Header />
 
@@ -185,7 +186,7 @@ render() {
             );
         })
         )}
-    </>
+    </></div>
     );
 }
 }
