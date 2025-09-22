@@ -10,12 +10,14 @@ import Favoritos from "./Screens/Favoritos/Favoritos.js"
 import Resultados from "./Screens/Resultados/Resultados.js"
 import NotFound from "./Screens/NotFound/NotFound.js";
 import PopularSeries from "./Screens/PopularSeries/PopularSeries.js";
+import MoviesPlaying from "./Screens/MoviesPlaying/MoviesPlaying.js";
 
 function App() {
   return (
     <Switch>
       <Route path="/" exact={true} component={Home}/>
       <Route path="/seriesPopulares" component={PopularSeries}/>
+      <Route path="/moviesPlaying" component ={MoviesPlaying}/>
       <Route path="/series" exact={true} component={Series}/>
       <Route path="/peliculas" exact = {true} component={Peliculas}/>
       <Route path="/series/:id" component={SerieDetalle}/>

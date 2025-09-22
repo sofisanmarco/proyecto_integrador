@@ -2,10 +2,10 @@ import React, {Component} from "react";
 import Header from "../../Components/Header/Header";
 import Movie from "../../Components/Movie/Movie";
 
-class MoviesPlaying extends Component(){
+class MoviesPlaying extends Component{
    constructor(props){
         super(props)
-        this.state={data: [], loading:true}
+        this.state={data: []}
     }
     
     componentDidMount(){

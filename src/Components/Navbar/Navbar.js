@@ -6,6 +6,7 @@ function Navbar(){
     const itemsMenu = [
         { ruta:"/", name:"Home", exact: true},
         { ruta: "/seriesPopulares", name: "Series Populares"},
+        {ruta: "/moviesPlaying", name: "Movies playing"},
         { ruta:"/peliculas", name:"Peliculas"},
         { ruta:"/series", name:"Series"},
         { ruta:"/favoritos", name:"Favoritos"}
