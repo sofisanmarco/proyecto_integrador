@@ -13,6 +13,7 @@ function Home(){
             <div class="container">
             <h1>UdeSA Movies</h1>
             <Header/>
+            <br/>
             <main>
                 <h2 className="alert alert-primary">Popular movies this week</h2>
                 <PopularMovies/>
