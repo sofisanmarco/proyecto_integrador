@@ -9,7 +9,7 @@ constructor(props) {
     peliculas: [],
     series: [],
     descripcion: false,
-    boton: "Ver descripcion",
+    boton: "See Overview",
     };
 }
 
@@ -17,7 +17,7 @@ constructor(props) {
 switch = () => {
     this.setState((prev) => ({
     descripcion: !prev.descripcion,
-    boton: prev.descripcion ? "Ver descripcion" : "Ocultar descripcion",
+    boton: prev.descripcion ? "See Overview" : "Close Overview",
     }));
 };
 
@@ -71,10 +71,10 @@ render() {
     <>
         <Header />
 
-        <h2 className="alert alert-primary">Películas favoritas</h2>
+        <h2 className="alert alert-primary">Favorite Movies</h2>
 
         {peliculas.length === 0 ? (
-        <p className="noFav">No tenes películas favoritas.</p>
+        <p className="noFav">You dont have favorite movies.</p>
         ) : (
         peliculas.map((peli) => {
             const id = peli.id;
@@ -110,7 +110,7 @@ render() {
                 </div>
 
                 <Link to={`/peliculas/${id}`} className="btn btn-primary">
-                    Ver más
+                    Details
                 </Link>
 
                 <div>
@@ -129,10 +129,10 @@ render() {
         })
         )}
 
-        <h2 className="alert alert-warning">Series favoritas</h2>
+        <h2 className="alert alert-warning">Favorite TV shows</h2>
 
         {series.length === 0 ? (
-        <p className="noFav">No tenes series favoritas.</p>
+        <p className="noFav">You dont have favorite TV shows.</p>
         ) : (
         series.map((serie) => {
             const id = serie.id;
@@ -168,7 +168,7 @@ render() {
                 </div>
 
                 <Link to={`/series/${id}`} className="btn btn-primary">
-                    Ver más
+                    Details
                 </Link>
 
                 <div>

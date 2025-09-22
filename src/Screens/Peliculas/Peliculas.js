@@ -7,7 +7,7 @@ function Peliculas(){
         <React.Fragment>
             <div class="container">
                 <Header/>
-                <h2 class="alert alert-primary">Top rated Peliculas</h2>
+                <h2 class="alert alert-primary">Top rated Movies</h2>
                 <Movies/>
             </div>
         </React.Fragment>

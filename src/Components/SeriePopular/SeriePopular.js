@@ -4,18 +4,18 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 class SeriePopular extends Component{
     constructor (props){
     super(props);
-    this.state = {descripcion: false, boton: "Ver descripcion", favoritos: false}}
+    this.state = {descripcion: false, boton: "See Overview", favoritos: false}}
 
     switch(){
         if (this.state.descripcion == false){
             this.setState({
                 descripcion: true,
-                boton: "Ocultar descripcion"
+                boton: "Close overview"
             }); 
             } else {
             this.setState({
                 descripcion: false,
-                boton: "Ver descripcion"    
+                boton: "See Overview"    
             }); 
         }
     };
@@ -67,7 +67,7 @@ class SeriePopular extends Component{
                     {this.state.descripcion ? (<p className="card-text">{this.props.info.overview}</p>) : ""}
                     <div><button className="btn alert-primary" onClick={() => this.switch() }>{this.state.boton}</button></div>
 
-                    <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
+                    <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Details</Link>
 
                     {this.state.favoritos ? <div ><button className="btn alert-primary" onClick={() => this.quitarDeFavoritos()} >♥️</button></div>
                     : <div><button className="btn alert-primary" onClick={() => this.agregarFavoritos()} >🩶</button></div>} 

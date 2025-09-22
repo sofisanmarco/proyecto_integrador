@@ -14,7 +14,7 @@ class Movie extends Component{
                 <div className="cardBody">
                     <h5 className="card-title">{this.props.info.title}</h5>
                     <p className="card-text">{this.props.info.overview}</p>
-                    <Link to={`/peliculas/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
+                    <Link to={`/peliculas/${this.props.info.id}`} className="btn btn-primary">Details</Link>
                 </div>
             </article>
             </React.Fragment>

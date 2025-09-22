@@ -6,7 +6,7 @@ import Buscador from "../Buscador/Buscador";
 function Header() {
     return(
         <header>
-            <h1>Cartelera Ya</h1>
+            <h1>The Watchlist</h1>
             <Navbar/>
         </header>
 

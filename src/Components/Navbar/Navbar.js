@@ -5,9 +5,9 @@ function Navbar(){
 
     const itemsMenu = [
         { ruta:"/", name:"Home", exact: true},
-        { ruta:"/peliculas", name:"Top rated Peliculas"},
-        { ruta:"/series", name:"Series Populares"},
-        { ruta:"/favoritos", name:"Favoritos"}
+        { ruta:"/peliculas", name:"Top rated Movies"},
+        { ruta:"/series", name:"Popular TV shows"},
+        { ruta:"/favoritos", name:"Favorites"}
     ]
 
 
