@@ -63,126 +63,64 @@ quitarDeFavoritos = (id) => {
 };
 
 render() {
+    
     const peliculas = this.state.peliculas;
     const series = this.state.series;
 
     return (
         <div class="container">
-    
         <Header />
 
         <h2 className="alert alert-primary">Favorite Movies</h2>
 
-        {peliculas.length === 0 ? (
-        <p className="noFav">You dont have favorite movies.</p>
-        ) : (
-        peliculas.map((peli) => {
-            const id = peli.id;
-            let titulo = peli.title;
-            if (titulo === undefined) titulo = peli.titulo;
-            if (titulo === undefined) titulo = 'Sin título';
-            const poster = peli.poster_path;
-
+        {peliculas.length === 0 ? (<p className="noFav">You dont have favorite movies.</p>) 
+        : (peliculas.map((peli) => {
             return (
-            <section class="row cards" id="movies">
-            <article className="single-card-movie" key={`movie-${id}`}>
-                <img
-                src={`https://image.tmdb.org/t/p/original${poster}`}
-                className="card-img-top"
-                alt={titulo}
-                />
-                <div className="cardBody">
-                <h5 className="card-title">{titulo}</h5>
+                <section class="row cards" id="movies">
+                    <article className="single-card-movie" key={`movie-${peli.id}`}>
+                        <img className="card-img-top" src={`https://image.tmdb.org/t/p/original${peli.poster_path}`} alt={peli.title}/>
+                        
+                        <div className="cardBody">
+                            <h5 className="card-title">{peli.title}</h5>
 
-                {this.state.descripcion ? (
-                    <p className="card-text">{peli.overview}</p>
-                ) : (
-                    ""
-                )}
+                            {this.state.descripcion ? (<p className="card-text">{peli.overview}</p>) : ""}
+                            <div>
+                                <button className="btn alert-primary" onClick={this.switch}>{this.state.boton}</button>
+                            </div>
+                            <Link to={`/peliculas/${peli.id}`} className="btn btn-primary">Details</Link>
 
-                <div>
-                    <button
-                    className="btn alert-primary"
-                    onClick={this.switch}
-                    >
-                    {this.state.boton}
-                    </button>
-                </div>
-
-                <Link to={`/peliculas/${id}`} className="btn btn-primary">
-                    Details
-                </Link>
-
-                <div>
-                    <button
-                    className="btn alert-primary"
-                    onClick={() => this.quitarDeFavoritos(id)}
-                    title="Quitar de favoritos"
-                    >
-                    ♥️
-                    </button>
-                </div>
-                </div>
-            </article>
-            </section>
+                            <div>
+                                <button className="btn alert-primary" onClick={() => this.quitarDeFavoritos(peli.id)} title="Quitar de favoritos">♥️</button>
+                            </div>
+                        </div>
+                    </article>
+                </section>
             );
-        })
+            })
         )}
 
         <h2 className="alert alert-warning">Favorite TV shows</h2>
 
-        {series.length === 0 ? (
-        <p className="noFav">You dont have favorite TV shows.</p>
+        {series.length === 0 ? (<p className="noFav">You dont have favorite TV shows.</p>
         ) : (
         series.map((serie) => {
-            const id = serie.id;
-            let titulo = serie.name;
-            if (titulo === undefined) titulo = serie.titulo;
-            if (titulo === undefined) titulo = 'Sin título';
-            const poster = serie.poster_path;
-
             return (
-            <section class="row cards" id="movies">
-            <article className="single-card-tv" key={`tv-${id}`}>
-                <img
-                src={`https://image.tmdb.org/t/p/original${poster}`}
-                className="card-img-top"
-                alt={titulo}
-                />
-                <div className="cardBody">
-                <h5 className="card-title">{titulo}</h5>
-
-                {this.state.descripcion ? (
-                    <p className="card-text">{serie.overview}</p>
-                ) : (
-                    ""
-                )}
-
-                <div>
-                    <button
-                    className="btn alert-primary"
-                    onClick={this.switch}
-                    >
-                    {this.state.boton}
-                    </button>
-                </div>
-
-                <Link to={`/series/${id}`} className="btn btn-primary">
-                    Details
-                </Link>
-
-                <div>
-                    <button
-                    className="btn alert-primary"
-                    onClick={() => this.quitarDeFavoritos(id)}
-                    title="Quitar de favoritos"
-                    >
-                    ♥️
-                    </button>
-                </div>
-                </div>
-            </article>
-            </section>
+                <section class="row cards" id="movies">
+                    <article className="single-card-tv" key={`tv-${serie.id}`}>
+                        <img src={`https://image.tmdb.org/t/p/original${serie.poster_path}`} className="card-img-top" alt={serie.name}/>
+                        <div className="cardBody">
+                            <h5 className="card-title">{serie.name}</h5>
+                            {this.state.descripcion ? (<p className="card-text">{serie.overview}</p>) : ""}
+                            <div>
+                                <button className="btn alert-primary" onClick={this.switch}>{this.state.boton}</button>
+                            </div>
+                            <Link to={`/series/${serie.id}`} className="btn btn-primary">Details</Link>
+                            <div>
+                                <button className="btn alert-primary" onClick={() => this.quitarDeFavoritos(serie.id)} title="Quitar de favoritos">♥️</button>
+                            </div>
+                        </div>
+                    </article>
+                </section>
             );
         })
         )}
