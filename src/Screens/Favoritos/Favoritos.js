@@ -68,7 +68,7 @@ render() {
 
     return (
         <div class="container">
-    <>
+    
         <Header />
 
         <h2 className="alert alert-primary">Películas favoritas</h2>
@@ -186,7 +186,7 @@ render() {
             );
         })
         )}
-    </></div>
+    </div>
     );
 }
 }
