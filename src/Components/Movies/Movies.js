@@ -48,7 +48,7 @@ class Movies extends Component {
         .then((response) => response.json())
         .then(data => this.setState({
             data: this.state.data.concat(data.results),
-            nextPage: nextPage
+            page: nextPage
     }))
         .catch((error) => console.log('El error fue: ' + error));
 }
