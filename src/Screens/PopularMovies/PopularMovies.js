@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import Header from "../../Components/Header/Header";
 import Movie from "../../Components/Movie/Movie";
+import Filtrar from "../../Components/Filtrar/Filtrar";
 
 class PopularMovies extends Component{
     constructor(props){
         super(props)
-        this.state = {data: [], valor: "", boton: "Cargar más", page: 1, loading: true}
+        this.state = {data: [], valor: "", boton: "Cargar más", page: 1, loading: true, dataFiltrada: []}
     }
 
     componentDidMount(){
@@ -19,7 +20,7 @@ class PopularMovies extends Component{
 
         fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results, loading:false}))
+        .then( data => this.setState({data: data.results, loading:false, dataFiltrada: data.results}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
     };
 
@@ -42,16 +43,26 @@ class PopularMovies extends Component{
             .catch((error) => console.log('El error fue: ' + error));
     }
 
+    filtrarPeliculas(valor){
+      let filtradas = this.state.data.filter(pelicula => pelicula.title.toLowerCase().includes(valor.toLowerCase()) );
+      this.setState({
+        dataFiltrada: filtradas
+        })
+    };
+
     render(){
+        
         return(
             <div class="container">
                 <Header/>
                 <h2 class="alert alert-primary">Popular Movies this week</h2>
 
+                <Filtrar filtrar={(id) => this.filtrarPeliculas(id)} />
+
                 {this.state.data === "" ?
                     <h3> Cargando... </h3> :
                     <section className="row cards all-movies" id="movies">
-                        {this.state.data.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
+                        {this.state.dataFiltrada.map((item,idx) => <Movie key = {item + idx} info = {item}/>)}
                     </section>}
                 
                 <div className="cargarMasContainer"> <button className="cargarMas" onClick={() => this.masPeliculas()}> Cargar mas </button> </div>

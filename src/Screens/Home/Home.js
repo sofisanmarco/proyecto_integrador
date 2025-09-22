@@ -45,9 +45,7 @@ class Home extends Component{
 
 
 
-render(){
-    console.log(this.state.topMovies);
-    
+render(){    
     return(
             <div class="container">
                 <Header/>
