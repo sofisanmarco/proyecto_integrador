@@ -6,7 +6,7 @@ import Series from "./Screens/Series/Series.js"
 import Peliculas from "./Screens/Peliculas/Peliculas.js"
 import SerieDetalle from "./Screens/SerieDetalle/SerieDetalle.js";
 import PeliculaDetalle from "./Screens/PeliculaDetalle/PeliculaDetalle.js";
-
+import Favoritos from "./Screens/Favoritos/Favoritos.js"
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
       <Route path="/peliculas" exact = {true} component={Peliculas}/>
       <Route path="/series/:id" component={SerieDetalle}/>
       <Route path="/peliculas/:id" component={PeliculaDetalle}/>
+      <Route path="/Favoritos" component={Favoritos}/>
     </Switch>
   );
 }

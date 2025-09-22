@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 class PopularMovie extends Component{
     constructor (props){
     super(props);
-    this.state = {descripcion: false, boton: "Ver descripcion", favs: false}}
+    this.state = {descripcion: false, boton: "Ver descripcion", favoritos: false}}
 
     switch(){
         if (this.state.descripcion == false){
@@ -22,7 +22,7 @@ class PopularMovie extends Component{
 
     agregarFavoritos(){
         this.setState({
-            favs: true
+            favoritos: true
         })
 
         let recuperarFavoritos = localStorage.getItem('favoritos')
