@@ -15,8 +15,7 @@ function Home(){
             <Header/>
             <br/>
             <main>
-                <h2 className="alert alert-primary">Popular movies this week</h2>
-                <PopularMovies/>
+               
                 
                 <h2 className="alert alert-primary">Movies now playing</h2>
                 <PlayingMovies/>
@@ -24,8 +23,7 @@ function Home(){
                 <h2 className="alert alert-warning">Popular TV shows this week</h2>
                 <SeriesPopulares/>
 
-                <h2 class="alert alert-warning">TV shows airing today</h2>
-                <SeriesSemana/>
+               
             </main>
             </div>
 
