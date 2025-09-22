@@ -48,17 +48,17 @@ class Resultados extends Component{
 render(){
 
     if (this.state.loading){
-        return <h3 className="Cargando">Cargando...</h3>
+        return <h3 className="Cargando">Loading...</h3>
     }
 
     if (this.state.resultados.length === 0){
-        return <p className="Cargando">No se encontraron resultados</p>
+        return <p className="Cargando">No results</p>
     }
 
     return(
         <div className="container">
             <Header/>
-            <h2 className="error404" >Resultados de busqueda</h2>
+            <h2 className="error404" >Search Results</h2>
             <section className="row cards">
 
                 {this.state.resultados.map((item, idx)=>this.state.tipo==="serie" ? (<SeriePopular key={item.id + idx} info={item}/>):(<TopMovie key={item.id + idx} info={item}/>)  )}

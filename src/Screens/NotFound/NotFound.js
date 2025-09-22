@@ -5,7 +5,7 @@ function NotFound() {
     return(
         <React.Fragment>
             <div className="container">
-            <h1>UdeSA Movies</h1>
+            <h1>The Watchlist</h1>
             <Header/>
             <br/>
             <h1 className="error404">ERROR 404</h1>

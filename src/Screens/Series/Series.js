@@ -11,7 +11,7 @@ function PaginaSeries(){
 
                 
 
-                <h2 class="alert alert-warning">Series Populares</h2>
+                <h2 class="alert alert-warning">Popular TV shows</h2>
                 <Series/>
             </div>
         </React.Fragment>

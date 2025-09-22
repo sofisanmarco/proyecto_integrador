@@ -26,6 +26,7 @@ class SerieDetalle extends Component{
        render(){
         return(
             <div className="container">
+                <h1>The Watchlist</h1>
                 <Header/>
                 <DetalleDeSerie detalle={this.state.detalle}/>
                 

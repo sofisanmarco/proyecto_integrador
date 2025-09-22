@@ -37,11 +37,11 @@ class Buscador extends Component{
                 />
 
                 <select onChange={this.controlarTipo} value={this.state.tipo}>
-                    <option value="pelicula">Peliculas</option>
+                    <option value="pelicula">Movies</option>
                     <option value="serie">Series</option>
                 </select>
 
-                <button type="submit" className="btn btn-success btn-sm">Buscar</button>
+                <button type="submit" className="btn btn-success btn-sm">Search</button>
 
             </form>
         )

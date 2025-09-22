@@ -13,13 +13,13 @@ class DetalleDeSerie extends Component{
                 <h2 className="alert alert-warning">{this.props.detalle.name}</h2>
                 <section className="row">
                     <section className="col-md-6 info">
-                        <h3>Descripción</h3>
+                        <h3>Overview</h3>
                         <p className="description">{this.props.detalle.overview}</p>
                         <p class="mt-0 mb-0" id="release-date"><strong>Rating:</strong>{this.props.detalle.vote_average}</p>
-                        <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong>{this.props.detalle.first_air_date}</p>
-                        <p class="mt-0 mb-0" id="release-date"><strong>Genero:</strong>{this.props.detalle.genre}</p>
-                        <p class="mt-0 mb-0" id="episodes"><strong>Número de capítulos:</strong> {this.props.detalle.number_of_episodes}</p>
-                        <p class="mt-0 seasons"><strong>Temporadas:</strong> {this.props.detalle.number_of_seasons}</p>
+                        <p class="mt-0 mb-0" id="release-date"><strong>Release Date:</strong>{this.props.detalle.first_air_date}</p>
+                        <p class="mt-0 mb-0" id="release-date"><strong>Genere:</strong>{this.props.detalle.genre}</p>
+                        <p class="mt-0 mb-0" id="episodes"><strong>Number of Episodes:</strong> {this.props.detalle.number_of_episodes}</p>
+                        <p class="mt-0 seasons"><strong>Seasons:</strong> {this.props.detalle.number_of_seasons}</p>
                     </section>
                     <img class="col-md-6" src={`https://image.tmdb.org/t/p/original${this.props.detalle.poster_path}`} alt=""/>
                 </section>
