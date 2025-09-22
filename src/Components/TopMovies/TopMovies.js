@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import PopularMovie from "../PopularMovie/PopularMovie";
+import TopMovie from "../TopMovie/TopMovie";
 
-class PopularMovies extends Component{
+class TopMovies extends Component{
     constructor(props){
         super(props)
         this.state={data: [], loading:true}
@@ -17,7 +16,7 @@ class PopularMovies extends Component{
             }
         };
 
-        fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", options)
+        fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options)
         .then( response => response.json() )
         .then( data => this.setState({data: data.results.filter((pelicula, idx) => idx < 4), loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
@@ -34,7 +33,7 @@ class PopularMovies extends Component{
             {this.state.data === "" ?
                     <h3> Cargando... </h3> :
                     <section class="row cards" id="movies">
-                        {this.state.data.map((item, idx) => <PopularMovie key = {item + idx} info = {item}/>)}
+                        {this.state.data.map((item, idx) => <TopMovie key = {item + idx} info = {item}/>)}
                     </section>}
         </div>
 
@@ -42,4 +41,4 @@ class PopularMovies extends Component{
     };
 };
 
-export default PopularMovies;
+export default TopMovies;

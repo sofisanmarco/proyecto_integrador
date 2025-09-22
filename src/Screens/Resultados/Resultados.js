@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import SeriePopular from "../../Components/SeriePopular/SeriePopular";
-import PopularMovie from "../../Components/PopularMovie/PopularMovie";
+import TopMovie from "../../Components/TopMovie/TopMovie";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 
@@ -61,7 +61,7 @@ render(){
             <h2 className="error404" >Resultados de busqueda</h2>
             <section className="row cards">
 
-                {this.state.resultados.map((item, idx)=>this.state.tipo==="serie" ? (<SeriePopular key={item.id + idx} info={item}/>):(<PopularMovie key={item.id + idx} info={item}/>)  )}
+                {this.state.resultados.map((item, idx)=>this.state.tipo==="serie" ? (<SeriePopular key={item.id + idx} info={item}/>):(<TopMovie key={item.id + idx} info={item}/>)  )}
 
             </section>
             <Footer/>

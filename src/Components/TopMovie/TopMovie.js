@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-class PopularMovie extends Component{
+class TopMovie extends Component{
     constructor (props){
     super(props);
     this.state = {descripcion: false, boton: "Ver descripcion", favoritos: false}}
@@ -80,4 +80,4 @@ class PopularMovie extends Component{
     };
 };
 
-export default PopularMovie;
+export default TopMovie;

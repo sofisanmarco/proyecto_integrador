@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import PopularMovies from "../../Components/PopularMovies/PopularMovies";
+import TopMovies from "../../Components/TopMovies/TopMovies";
 import PlayingMovies from "../../Components/PlayingMovies/PlayingMovies";
 import SeriesPopulares from "../../Components/SeriesPopulares/SeriesPopulares";
 import SeriesSemana from "../../Components/SeriesSemana/SeriesSemana";
@@ -16,8 +16,9 @@ function Home(){
             <Buscador/>
             <br/>
             <main>
-               
-                
+                <h2 class="alert alert-primary">Popular movies this week</h2>
+                <TopMovies/>
+
                 <h2 className="alert alert-primary">Movies now playing</h2>
                 <PlayingMovies/>
                 
