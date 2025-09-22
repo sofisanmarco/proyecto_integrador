@@ -56,6 +56,7 @@ class SeriePopular extends Component{
     componentDidMount(){
         let recuperarfavs = localStorage.getItem('favoritos')
     };
+    
     render(){
         return(
         <React.Fragment>
