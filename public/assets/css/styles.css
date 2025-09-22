@@ -36,6 +36,7 @@ nav, footer {
     column-gap: 5px;
     background-color: #333333;
     border-radius: 6px;
+    margin-bottom: 20px;
 }
 .filter-form {
     grid-template-columns: 1fr;
@@ -48,7 +49,6 @@ nav, footer {
     color: #E5FCC2;
     border-radius: 4px;
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
 }
 .search-form .btn-sm:hover {
     background-color: #45ADA8;
