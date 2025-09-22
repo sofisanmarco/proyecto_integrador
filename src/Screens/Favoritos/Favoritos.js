@@ -83,6 +83,7 @@ render() {
             const poster = peli.poster_path;
 
             return (
+            <section class="row cards" id="movies">
             <article className="single-card-movie" key={`movie-${id}`}>
                 <img
                 src={`https://image.tmdb.org/t/p/original${poster}`}
@@ -122,6 +123,7 @@ render() {
                 </div>
                 </div>
             </article>
+            </section>
             );
         })
         )}
@@ -139,6 +141,7 @@ render() {
             const poster = serie.poster_path;
 
             return (
+            <section class="row cards" id="movies">
             <article className="single-card-tv" key={`tv-${id}`}>
                 <img
                 src={`https://image.tmdb.org/t/p/original${poster}`}
@@ -178,6 +181,7 @@ render() {
                 </div>
                 </div>
             </article>
+            </section>
             );
         })
         )}
