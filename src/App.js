@@ -16,9 +16,9 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact={true} component={Home}/>
-      <Route path="/series" exact={true} component={SeriesPopulares}/>
+      <Route path="/seriesPopulares" exact={true} component={SeriesPopulares}/>
       <Route path="/topSeries" component={TopSeries}/>
-      <Route path="/peliculas" exact = {true} component={TopMovies}/>
+      <Route path="/topMovies" exact = {true} component={TopMovies}/>
       <Route path="/popularMovies" component={PopularMovies}/>
       <Route path="/series/:id" component={SerieDetalle}/>
       <Route path="/peliculas/:id" component={PeliculaDetalle}/>

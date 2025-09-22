@@ -4,6 +4,7 @@ import Footer from "../../Components/Footer/Footer";
 import Buscador from "../../Components/Buscador/Buscador";
 import Serie from "../../Components/Serie/Serie";
 import Movie from "../../Components/Movie/Movie"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 class Home extends Component{
     constructor(props){
@@ -52,28 +53,28 @@ render(){
                 <Header/>
                 <Buscador/>
                     <main>
-                        <h2 class="alert alert-primary">Top rated Movies</h2>
+                        <Link to={"/peliculas"}><h2 class="alert alert-primary">Top rated Movies</h2></Link>
                         <section class="row cards" id="movies">
                             {this.state.topMovies.map(peli => {
                                 return <Movie info={peli} />
                             })}
                         </section>
 
-                        <h2 class="alert alert-primary">Popular Movies this week</h2>
+                        <Link to={"/popularMovies"}><h2 class="alert alert-primary">Popular Movies this week</h2></Link>
                         <section class="row cards" id="movies">
                         {this.state.popularMovies.map(peli => {
                             return <Movie info={peli} />
                         })}
                         </section>
 
-                        <h2 className="alert alert-warning">Top rated TV shows</h2>
+                        <Link to={"/topSeries"}><h2 className="alert alert-warning">Top rated TV shows</h2></Link>
                         <section class="row cards" id="movies">
                         {this.state.topSeries.map(peli => {
                             return <Serie info={peli} />
                         })}
                         </section>
 
-                        <h2 className="alert alert-warning">Popular TV shows this week</h2>
+                        <Link to={"/series"}> <h2 className="alert alert-warning">Popular TV shows this week</h2></Link> 
                         <section class="row cards" id="movies">
                         {this.state.popularSeries.map(peli => {
                             return <Serie info={peli} />
