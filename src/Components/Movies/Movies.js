@@ -44,7 +44,7 @@ class Movies extends Component {
             }
         };
 
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&${nextPage}`, options)
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${nextPage}`, options)
         .then((response) => response.json())
         .then(data => this.setState({
             data: this.state.data.concat(data.results),
