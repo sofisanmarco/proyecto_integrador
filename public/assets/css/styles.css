@@ -122,6 +122,25 @@ nav, footer {
     margin-top: 20px;
 }
 
+.description {
+    color: rgb(179, 179, 179);
+}
+
+.col-md-6  {
+    color: rgb(179, 179, 179);
+}
+
+.alert {
+    background-color: rgb(190, 190, 255);
+    color: rgb(63, 63, 105);
+    border-color: #005cbf;
+}
+
+.btn{
+    background-color: rgb(179, 179, 179);
+    color: black;
+    border-color: rgb(145, 145, 145);;
+}
 
 @media(min-width: 765px){
     nav {

@@ -5,7 +5,7 @@ import Header from "../../Components/Header/Header";
 class PeliculaDetalle extends Component{
     constructor(props){
         super(props);
-        this.state = {detalle: {}, id: props.match.params.id}
+        this.state = {detalle: {}, id: props.match.params.id, loading: true}
     }
 
     componentDidMount(){
@@ -24,6 +24,8 @@ class PeliculaDetalle extends Component{
         }
 
     render(){
+
+
     return(
         <div className="container">
                 <Header/>

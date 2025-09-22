@@ -4,7 +4,7 @@ import Movie from "../Movie/Movie"
 class Movies extends Component {
     constructor (props){
     super(props);
-    this.state = {valor: "", data:[], boton: "Cargar más",page:1,loading:true}}
+    this.state = {valor: "", boton: "Cargar más",page:1,loading:true}}
 
     componentDidMount(){
         const options = {

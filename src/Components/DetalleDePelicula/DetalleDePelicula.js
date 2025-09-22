@@ -49,15 +49,15 @@ class DetalleDePelicula extends Component{
         return(
             <React.Fragment>
                 <h2 className="alert alert-primary">{this.props.detalle.title}</h2>
-            <section className="row">
+                <section className="row">
                     <img className="col-md-6" src={`https://image.tmdb.org/t/p/original${this.props.detalle.poster_path}`} alt=""/>
                 <section className="col-md-6 info">
-                    <h3>Overview</h3>
+                    <h3 className="description">Overview</h3>
                     <p className="description"> {this.props.detalle.overview}</p>
                     <p className="mt-0 mb-0" id="release-date"><strong>Release Date:</strong> {this.props.detalle.release_date}</p>
                     <p className="mt-0 mb-0 length"><strong>Runtime:</strong> {this.props.detalle.runtime}</p>
-                    <p classNamw="mt-0" id="votes"><strong>Rating:</strong> {this.props.detalle.vote_average}</p>
-                    <p classNamw="mt-0" id="votes"><strong>Genere:</strong> </p>
+                    <p className="mt-0" id="votes"><strong>Rating:</strong> {this.props.detalle.vote_average}</p>
+                    <p className="mt-0" id="votes"><strong>Genre:</strong> </p>
                     
                     {this.state.favoritos ? <div ><button className="btn alert-primary" onClick={() => this.quitarDeFavoritos()} >♥️</button></div>
                     : <div><button className="btn alert-primary" onClick={() => this.agregarFavoritos()} >🩶</button></div>}
