@@ -17,7 +17,7 @@ class Movies extends Component {
 
         fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results.filter((pelicula, idx) => idx < 4), page:1, loading:false}))
+        .then( data => this.setState({data: data.results, page:1, loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });
 
     }
