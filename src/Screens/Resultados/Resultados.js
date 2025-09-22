@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import SeriePopular from "../../Components/SeriePopular/SeriePopular";
 import PopularMovie from "../../Components/PopularMovie/PopularMovie";
+import Header from "../../Components/Header/Header";
+import Footer from "../../Components/Footer/Footer";
 
 class Resultados extends Component{
     constructor(props){
@@ -55,15 +57,16 @@ render(){
 
     return(
         <div>
-
+            <Header/>
             <h2 className="error404" >Resultados de busqueda</h2>
             <section className="row cards">
 
                 {this.state.resultados.map((item, idx)=>this.state.tipo==="serie" ? (<SeriePopular key={item.id + idx} info={item}/>):(<PopularMovie key={item.id + idx} info={item}/>)  )}
 
             </section>
+            <Footer/>
         </div>
     )
     }}
 
-export default Resultados;
+export default Resultados
