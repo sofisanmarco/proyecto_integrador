@@ -31,7 +31,7 @@ class SerieSemana extends Component{
                         {this.state.descripcion ? (<p className="card-text">{this.props.info.overview}</p>) : ""}
                         <div><button className="btn alert-primary" onClick={() => this.switch() }>{this.state.boton}</button></div>
 
-                        <Link to={`/peliculas/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
+                        <Link to={`/series/${this.props.info.id}`} className="btn btn-primary">Ver más</Link>
                         <a href="" className="btn alert-primary">🩶</a>
                     </div>
                 </article>
