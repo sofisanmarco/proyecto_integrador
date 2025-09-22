@@ -6,7 +6,7 @@ class SeriesPopulares extends Component{
     super(props);
     this.state = {data: []}}
 
-     componentDidMount(){
+    componentDidMount(){
         const options = {
             method: 'GET',
             headers: {
@@ -17,12 +17,16 @@ class SeriesPopulares extends Component{
 
         fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1 ", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results.filter((serie, idx) => idx < 4)}))
-        .catch( error => console.log(error) );
+        .then( data => this.setState({data: data.results.filter((serie, idx) => idx < 4), loading:false}))
+        .catch( error => {console.log(error); this.setState({loading:false}) });
     }
 
 
     render(){
+        
+        if (this.state.loading){
+            return <h3 className="Cargando">Cargando...</h3>
+        }
 
         return(
             <div>

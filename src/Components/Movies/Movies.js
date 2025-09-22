@@ -4,9 +4,9 @@ import Movie from "../Movie/Movie"
 class Movies extends Component {
     constructor (props){
     super(props);
-    this.state = {valor: "", data:[], boton: "Cargar más",}}
+    this.state = {valor: "", data:[], boton: "Cargar más",loading:true}}
 
-     componentDidMount(){
+    componentDidMount(){
         const options = {
             method: 'GET',
             headers: {
@@ -17,8 +17,8 @@ class Movies extends Component {
 
         fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results}))
-        .catch( error => console.log(error) );
+        .then( data => this.setState({data: data.results, loading:false}))
+        .catch( error => {console.log(error); this.setState({loading:false}) });
 
     }
 
@@ -31,7 +31,7 @@ class Movies extends Component {
     };
 
     filtrarPersonajes(valor){
-          return this.state.data.filter(personaje => personaje.title.toLowerCase().includes(valor.toLowerCase()) );
+        return this.state.data.filter(personaje => personaje.title.toLowerCase().includes(valor.toLowerCase()) );
         }
 
     masPeliculas(){
@@ -45,6 +45,10 @@ class Movies extends Component {
 }
 
     render(){
+
+        if (this.state.loading){
+            return <h3 className="Cargando">Cargando...</h3>
+        }
 
         const personajesFiltrados = this.filtrarPersonajes(this.state.valor)
         

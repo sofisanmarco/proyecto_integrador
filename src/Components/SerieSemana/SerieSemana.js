@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 class SerieSemana extends Component{
     constructor (props){
     super(props);
-   this.state = {descripcion: false, boton: "Ver descripcion", favs: false}}
+    this.state = {descripcion: false, boton: "Ver descripcion", favs: false}}
 
     switch(){
         if (this.state.descripcion == false){

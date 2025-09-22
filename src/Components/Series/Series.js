@@ -4,7 +4,7 @@ import Serie from "../Serie/Serie";
 class Series extends Component{
     constructor (props){
     super(props);
-    this.state = {valor: "", data: []}}
+    this.state = {valor: "", data: [], loading:true}}
 
     componentDidMount(){
         const options = {
@@ -17,8 +17,8 @@ class Series extends Component{
 
         fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results}))
-        .catch( error => console.log(error) );
+        .then( data => this.setState({data: data.results, loading:false}))
+        .catch( error => {console.log(error); this.setState({loading:false}) });;
     }
 
     evitarSubmit(event) {
@@ -30,11 +30,15 @@ class Series extends Component{
     };
 
     filtrarPersonajes(valor){
-          return this.state.data.filter(personaje => personaje.name.toLowerCase().includes(valor.toLowerCase()) );
+        return this.state.data.filter(personaje => personaje.name.toLowerCase().includes(valor.toLowerCase()) );
         }
 
         render(){
             
+        if (this.state.loading){
+            return <h3 className="Cargando">Cargando...</h3>
+        }
+
             const personajesFiltrados = this.filtrarPersonajes(this.state.valor)
 
             return(
@@ -44,7 +48,7 @@ class Series extends Component{
                         <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor} />
                         <input type="submit" value="Submit" />
                     </form>    
-                          
+                        
                     {this.state.data === "" ?
                     <h3> Cargando... </h3> :
                     <section className="row cards all-series" id="series">
