@@ -24,36 +24,35 @@ constructor(props) {
           };
 
         let recuperarPeliculas= localStorage.getItem('favoritosPelicula')
-
         let recuperarSeries= localStorage.getItem('favoritosSerie')
         
         if (recuperarPeliculas){        
             let parseoPelicula = JSON.parse(recuperarPeliculas)
             let favPelis = []
-            parseoPelicula.map(id => {
-            fetch("https://api.themoviedb.org/3/account/null/favorite/movies?language=en-US&page=1&sort_by=created_at.asc ", options)
+            parseoPelicula.map(fav => {
+            const id = this.props.match.params.id
+
+            fetch(`https://api.themoviedb.org/3/movie/${fav}?language=en-US`, options)
             .then( response => response.json())
             .then( data =>{favPelis.push(data) 
                 this.setState({peliculas: favPelis})} )
             .catch( error =>	console.log('El error fue: ' + error))
         })
-        } else {
-            <h2> No favorite Movies</h2>
-        }
+        } 
 
         if (recuperarSeries){
             let parseoSeries = JSON.parse(recuperarSeries)
             let favSeries = []
-            parseoSeries.map(id => {
-            fetch("https://api.themoviedb.org/3/account/null/favorite/tv?language=en-US&page=1&sort_by=created_at.asc ", options)
+            parseoSeries.map(fav => {
+            const id = this.props.match.params.id
+
+            fetch(`https://api.themoviedb.org/3/tv/${fav}?language=en-US`, options)
             .then( response => response.json())
             .then( data =>{favSeries.push(data) 
                 this.setState({series: favSeries})} )
             .catch( error =>	console.log('El error fue: ' + error))
         })
-        } else {
-            <h2> No favorite Movies</h2>
-        }
+        } 
     }
 
     render(){
@@ -62,13 +61,13 @@ constructor(props) {
                 <Header />
                     <h1>Favorite Movies</h1>
                     <section className="row cards all-movies">
-                    {this.state.peliculas.map(peli => (<Movie key={peli.id} data={peli} info={peli} borrar={this.props.borrar}/>))}
+                    {this.state.peliculas.map(peli => (<Movie key={peli.id} info={peli}/>))}
                     </section>
 
                     <h1>Favorite TV Shows </h1>
                     <section className="row cards all-movies">
                     
-                    {this.state.series.map(serie => (<Serie key={serie.id} data={serie} info={serie} borrar={this.props.borrar} />))}
+                    {this.state.series.map(serie => (<Serie key={serie.id} info={serie}/>))}
                 </section>
                 <Footer/>
             </div>

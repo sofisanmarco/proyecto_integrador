@@ -20,7 +20,7 @@ class Serie extends Component{
         }
     };
 
-    agregarFavoritos(){
+    /*agregarFavoritos(){
         this.setState({
             favoritos: true
         })
@@ -55,7 +55,50 @@ class Serie extends Component{
 
     componentDidMount(){
         let recuperarfavs = localStorage.getItem('favoritosSerie')
-    };
+    };*/
+
+    componentDidMount (){
+        let recuperarfavs = localStorage.getItem('favoritosPelicula');
+        if (recuperarfavs !== null) {
+        let parseoFavs = JSON.parse(recuperarfavs);
+        let filtrados = parseoFavs.filter(id => id == this.props.info.id);
+        if (filtrados.length > 0) {
+            this.setState({ favoritos: true });
+        }
+        }
+    }
+
+    agregarFavoritos(){
+        let recuperarfavs = localStorage.getItem('favoritosSerie');
+        if (recuperarfavs === null){
+            let arrayFavs= []
+            arrayFavs.push(this.props.info.id)
+            let arrayToString = JSON.stringify(arrayFavs)
+            localStorage.setItem('favoritosSerie', arrayToString)
+        } else{
+            let parseoFavs = JSON.parse(recuperarfavs)
+            parseoFavs.push(this.props.info.id)
+            let arrayToString = JSON.stringify(parseoFavs)
+            localStorage.setItem('favoritosSerie', arrayToString)
+        }
+        
+        this.setState({
+            favoritos: true
+        }) 
+    }
+
+    quitarDeFavoritos(){
+        let recuperarfavs = localStorage.getItem('favoritosSerie');
+        let parseoFavs = JSON.parse(recuperarfavs)
+        let filtrados = parseoFavs.filter(id => id != this.props.info.id)
+        let arrayToString = JSON.stringify(filtrados)
+        localStorage.setItem('favoritosSerie', arrayToString)
+    
+        this.setState({
+        favoritos: false
+        })
+  }
+
 
 
     render(){

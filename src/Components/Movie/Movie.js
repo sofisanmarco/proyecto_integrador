@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 class Movie extends Component{
     constructor (props){
     super(props);
-    this.state = {descripcion: false, boton: "See Overview", favoritosPelicula: false}}
+    this.state = {descripcion: false, boton: "See Overview", favoritos: false}}
 
     switch(){
         if (this.state.descripcion == false){
@@ -20,7 +20,7 @@ class Movie extends Component{
         }
     };
 
-    agregarFavoritos(){
+    /*agregarFavoritos(){
         this.setState({
             favoritos: true
         })
@@ -55,7 +55,52 @@ class Movie extends Component{
 
     componentDidMount(){
         let recuperarfavs = localStorage.getItem('favoritosPelicula')
-    };
+    };*/
+
+    componentDidMount (){
+        let recuperarfavs = localStorage.getItem('favoritosPelicula');
+        if (recuperarfavs !== null) {
+        let parseoFavs = JSON.parse(recuperarfavs);
+        let filtrados = parseoFavs.filter(id => id == this.props.info.id);
+        if (filtrados.length > 0) {
+            this.setState({ favoritos: true });
+        }
+        }
+    }
+
+    agregarFavoritos(){
+        let recuperarfavs = localStorage.getItem('favoritosPelicula');
+        if (recuperarfavs === null){
+            let arrayFavs= []
+            arrayFavs.push(this.props.info.id)
+            let arrayToString = JSON.stringify(arrayFavs)
+            localStorage.setItem('favoritosPelicula', arrayToString)
+        } else{
+            let parseoFavs = JSON.parse(recuperarfavs)
+            parseoFavs.push(this.props.info.id)
+            let arrayToString = JSON.stringify(parseoFavs)
+            localStorage.setItem('favoritosPelicula', arrayToString)
+        }
+        
+        this.setState({
+            favoritos: true
+        }) 
+    }
+
+    quitarDeFavoritos(){
+        let recuperarfavs = localStorage.getItem('favoritosPelicula');
+        let parseoFavs = JSON.parse(recuperarfavs)
+        let filtrados = parseoFavs.filter(id => id != this.props.info.id)
+        let arrayToString = JSON.stringify(filtrados)
+        localStorage.setItem('favoritosPelicula', arrayToString)
+    
+        this.setState({
+        favoritos: false
+        })
+  
+  }
+
+
 
     render(){
         return(
