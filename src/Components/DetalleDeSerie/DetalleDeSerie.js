@@ -54,7 +54,7 @@ class DetalleDeSerie extends Component{
                         <p className="description">{this.props.detalle.overview}</p>
                         <p class="mt-0 mb-0" id="release-date"><strong>Rating:</strong>{this.props.detalle.vote_average}</p>
                         <p class="mt-0 mb-0" id="release-date"><strong>Release Date:</strong>{this.props.detalle.first_air_date}</p>
-                        <p class="mt-0 mb-0" id="release-date"><strong>Genere:</strong>{this.props.detalle.genre}</p>
+                        <p class="mt-0 mb-0" id="release-date"><strong>Genre:</strong>{this.props.detalle.genre}</p>
                         <p class="mt-0 mb-0" id="episodes"><strong>Number of Episodes:</strong> {this.props.detalle.number_of_episodes}</p>
                         <p class="mt-0 seasons"><strong>Seasons:</strong> {this.props.detalle.number_of_seasons}</p>
                         
