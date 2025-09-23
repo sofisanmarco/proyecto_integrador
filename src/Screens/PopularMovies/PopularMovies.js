@@ -34,7 +34,7 @@ class PopularMovies extends Component{
                 }
             };
 
-            fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${nextPage}`, options)
+            fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${nextPage}`, options)
             .then((response) => response.json())
             .then(data => this.setState({
                 dataFiltrada: this.state.data.concat(data.results),

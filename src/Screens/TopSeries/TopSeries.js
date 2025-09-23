@@ -35,7 +35,7 @@ class TopSeries extends Component{
             }
         };
 
-        fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${nextPage}`, options)
+        fetch(`https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=${nextPage}`, options)
         .then( response => response.json() )
         .then( data => this.setState({dataFiltrada: this.state.data.concat(data.results), page: nextPage, loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
