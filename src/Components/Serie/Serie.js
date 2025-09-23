@@ -20,42 +20,6 @@ class Serie extends Component{
         }
     };
 
-    /*agregarFavoritos(){
-        this.setState({
-            favoritos: true
-        })
-
-        let recuperarFavoritos = localStorage.getItem('favoritosSerie')
-
-        if(recuperarFavoritos == null){
-            let arrayFavs = []
-            arrayFavs.push(this.props.info)
-            let arrayToString = JSON.stringify(arrayFavs)
-            localStorage.setItem('favoritosSerie', arrayToString)
-        } 
-        else {
-            let parseoFavs = JSON.parse(recuperarFavoritos)
-            parseoFavs.push(this.props.info)
-            let arrayToString = JSON.stringify(parseoFavs) 
-            localStorage.setItem('favoritosSerie', arrayToString)
-        }
-    };
-
-    quitarDeFavoritos(){
-        let recuperarfavs = localStorage.getItem('favoritosSerie');
-        let parseoFavs = JSON.parse(recuperarfavs)
-        let filtrados = parseoFavs.filter(item => item.id != this.props.info.id)
-        let arrayToString = JSON.stringify(filtrados)
-        localStorage.setItem('favoritosSerie', arrayToString)
-
-        this.setState({
-            favoritos: false
-        })
-    };
-
-    componentDidMount(){
-        let recuperarfavs = localStorage.getItem('favoritosSerie')
-    };*/
 
     componentDidMount (){
         let recuperarfavs = localStorage.getItem('favoritosPelicula');
@@ -97,9 +61,8 @@ class Serie extends Component{
         this.setState({
         favoritos: false
         })
+  
   }
-
-
 
     render(){
         return(
