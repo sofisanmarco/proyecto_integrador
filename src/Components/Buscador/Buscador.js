@@ -33,14 +33,7 @@ class Buscador extends Component{
         return(
             <form onSubmit={this.evitarSubmit} className="search-form">
 
-                <input
-                    type="text"
-                    className=""
-                    name="searchData"
-                    placeholder="Buscar..."
-                    onChange={this.controlarCambios}
-                    value={this.state.valor}
-                />
+                <input type="text" name="searchData" placeholder="Buscar..." onChange={this.controlarCambios} value={this.state.valor}/>
 
                 <select onChange={this.controlarTipo} value={this.state.tipo}>
                     <option value="pelicula">Movies</option>

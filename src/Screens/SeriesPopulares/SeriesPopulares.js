@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import Header from "../../Components/Header/Header";
 import Serie from "../../Components/Serie/Serie";
+import Filtrar from "../../Components/Filtrar/Filtrar";
 
 
 class SeriesPopulares extends Component{
     constructor(props){
         super(props)
-        this.state={valor: "", data: [], boton:"Cargar mas" ,page:1, loading:true}
+        this.state = {data: [], valor: "", boton: "Cargar más", page: 1, loading: true, dataFiltrada: []}
     }
     componentDidMount(){
         const options = {
@@ -19,7 +20,7 @@ class SeriesPopulares extends Component{
 
         fetch("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1", options)
         .then( response => response.json() )
-        .then( data => this.setState({data: data.results, loading:false}))
+        .then( data => this.setState({data: data.results, loading:false, dataFiltrada: data.results}))
         .catch( error => {console.log(error); this.setState({loading:false}) });
  
     };
@@ -36,9 +37,16 @@ class SeriesPopulares extends Component{
 
         fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=${nextPage}`, options)
         .then( response => response.json() )
-        .then( data => this.setState({data: this.state.data.concat(data.results), page: nextPage, loading:false}))
+        .then( data => this.setState({dataFiltrada: this.state.data.concat(data.results), page: nextPage, loading:false}))
         .catch( error => {console.log(error); this.setState({loading:false}) });;
     }
+
+    filtrarPeliculas(valor){
+      let filtradas = this.state.data.filter(serie => serie.name.toLowerCase().includes(valor.toLowerCase()) );
+      this.setState({
+        dataFiltrada: filtradas
+        })
+    };
 
     render(){
 
@@ -50,22 +58,15 @@ class SeriesPopulares extends Component{
         <React.Fragment>
             <div class="container">
                 <Header/>
-                 <div>
-                    <form onSubmit={(event)=>this.evitarSubmit(event)}>
-                        <label>Serie: </label>
-                        <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor} />
-                        <input type="submit" value="Submit" />
-                    </form>    
-                        
-                    {this.state.data === "" ?
-                    <h3> Cargando... </h3> :
-                    <section className="row cards all-series" id="series">
-                        {this.state.data.map((item, idx) => <Serie key = {item + idx} info = {item}/>)}
-                    </section>} 
+                <Filtrar filtrar={(id) => this.filtrarPeliculas(id)} />   
+                
+                {this.state.data === "" ?
+                <h3> Cargando... </h3> :
+                <section className="row cards all-series" id="series">
+                    {this.state.dataFiltrada.map((item, idx) => <Serie key = {item + idx} info = {item}/>)}
+                </section>} 
 
-                        <div className="cargarMasContainer"> <button className="cargarMas" onClick={() => this.masSeries()}> Cargar mas </button> </div>
-
-                </div>
+                <div className="cargarMasContainer"> <button className="cargarMas" onClick={() => this.masSeries()}> Cargar mas </button> </div>
 
             </div>
         </React.Fragment>

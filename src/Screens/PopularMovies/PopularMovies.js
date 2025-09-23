@@ -37,7 +37,7 @@ class PopularMovies extends Component{
             fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${nextPage}`, options)
             .then((response) => response.json())
             .then(data => this.setState({
-                data: this.state.data.concat(data.results),
+                dataFiltrada: this.state.data.concat(data.results),
                 page: nextPage
         }))
             .catch((error) => console.log('El error fue: ' + error));
@@ -51,6 +51,10 @@ class PopularMovies extends Component{
     };
 
     render(){
+        
+        if (this.state.loading){
+            return <h3 className="Cargando">Cargando...</h3>
+        }
         
         return(
             <div class="container">

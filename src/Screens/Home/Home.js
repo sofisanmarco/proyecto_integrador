@@ -59,7 +59,7 @@ render(){
                         </section>
 
                         <Link to={"/popularMovies"}><h2 class="alert alert-primary">Popular Movies this week</h2></Link>
-                        <section class="row cards" id="movies">
+                        <section class="row cards" id="movies">    
                         {this.state.popularMovies.map(peli => {
                             return <Movie info={peli} />
                         })}

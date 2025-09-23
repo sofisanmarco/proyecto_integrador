@@ -17,12 +17,11 @@ class Filtrar extends Component{
     render(){
         return(
             <form className="search-form" onSubmit={(event)=>this.evitarSubmit(event)}>
-                <label>Movie: </label>
+                <label>Title: </label>
                 <input type="text" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor} />
-                <input type="submit" value="Submit" />
             </form>
         )
     }
 };
 
-export default Filtrar
+export default Filtrar;

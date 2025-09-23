@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 class Serie extends Component{
     constructor (props){
     super(props);
-    this.state = {valor: props.value, descripcion: false, boton: "See Overview", favoritos: false}}
+    this.state = {valor: props.value, descripcion: false, boton: "See Overview", favoritosSerie: false}}
 
     switch(){
         if (this.state.descripcion == false){
@@ -25,28 +25,28 @@ class Serie extends Component{
             favoritos: true
         })
 
-        let recuperarFavoritos = localStorage.getItem('favoritos')
+        let recuperarFavoritos = localStorage.getItem('favoritosSerie')
 
         if(recuperarFavoritos == null){
             let arrayFavs = []
             arrayFavs.push(this.props.info)
             let arrayToString = JSON.stringify(arrayFavs)
-            localStorage.setItem('favoritos', arrayToString)
+            localStorage.setItem('favoritosSerie', arrayToString)
         } 
         else {
             let parseoFavs = JSON.parse(recuperarFavoritos)
             parseoFavs.push(this.props.info)
             let arrayToString = JSON.stringify(parseoFavs) 
-            localStorage.setItem('favoritos', arrayToString)
+            localStorage.setItem('favoritosSerie', arrayToString)
         }
     };
 
     quitarDeFavoritos(){
-        let recuperarfavs = localStorage.getItem('favoritos');
+        let recuperarfavs = localStorage.getItem('favoritosSerie');
         let parseoFavs = JSON.parse(recuperarfavs)
         let filtrados = parseoFavs.filter(item => item.id != this.props.info.id)
         let arrayToString = JSON.stringify(filtrados)
-        localStorage.setItem('favoritos', arrayToString)
+        localStorage.setItem('favoritosSerie', arrayToString)
 
         this.setState({
             favoritos: false
@@ -54,7 +54,7 @@ class Serie extends Component{
     };
 
     componentDidMount(){
-        let recuperarfavs = localStorage.getItem('favoritos')
+        let recuperarfavs = localStorage.getItem('favoritosSerie')
     };
 
 

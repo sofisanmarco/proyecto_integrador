@@ -16,23 +16,27 @@ class Resultados extends Component{
 
 
     componentDidMount(){
-    let query = "";
-    let tipo = "pelicula";
+        let query = "";
+        let tipo = "pelicula";
 
-    if (this.props.location.state) {
-        query = this.props.location.state.query;
-        tipo = this.props.location.state.tipo;
-    }
+        if (this.props.location.state) {
+            query = this.props.location.state.query;
+            tipo = this.props.location.state.tipo;
+        }
 
-    if (query === "") {
-        this.setState({ loading: false });
-        return; 
-    }
+        if (query === "") {
+            this.setState({ loading: false });
+            return; 
+        }
 
-    let endpoint = tipo === "serie"
-        ? `https://api.themoviedb.org/3/search/tv?query=${query}&language=es-ES&page=1`
-        : `https://api.themoviedb.org/3/search/movie?query=${query}&language=es-ES&page=1`;
+        let endpoint = "";
 
+        if(tipo === "serie"){
+            endpoint = `https://api.themoviedb.org/3/search/tv?query=${query}&language=es-ES&page=1`
+        } else {
+        endpoint = `https://api.themoviedb.org/3/search/movie?query=${query}&language=es-ES&page=1`;
+        }
+    
         const options = {
             method:"GET",
             headers:{
