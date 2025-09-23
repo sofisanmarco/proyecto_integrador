@@ -5,7 +5,6 @@ class DetalleDePelicula extends Component{
     constructor(props){
         super(props)
         this.state = {favoritos: false}
-        genres = []
     }
 
     agregarFavoritos(){
